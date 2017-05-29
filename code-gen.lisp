@@ -2,8 +2,8 @@
 (ql:quickload "drakma")
 (ql:quickload "cl-json")
 
-(defparameter json (cl-json:decode-json-from-source #p"/Users/incjjung/development/swagger/mapr-swagger-ui/mapr.json"))
-(defparameter json (fetch-json "http://petstore.swagger.io/v2/swagger.json"))
+;;(defparameter json (cl-json:decode-json-from-source #p"/Users/incjjung/development/swagger/mapr-swagger-ui/mapr.json"))
+;;(defparameter json (fetch-json "http://petstore.swagger.io/v2/swagger.json"))
 
 
 (defun fetch-json (url)
@@ -81,12 +81,12 @@
 
 
 
-(defun convert-json (query-fun path body)
-  (multiple-value-bind (code stream head)
-      (funcall query-fun path body)
-    (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
-                                (cl-json:decode-json stream))
-        (format t "failed - code : ~a" code))))
+;;(defun convert-json (query-fun path body)
+;;  (multiple-value-bind (code stream head)
+;;      (funcall query-fun path body)
+;;    (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
+;;                                (cl-json:decode-json stream))
+;;        (format t "failed - code : ~a" code))))
 
 ;;(post-pet-call "apet" body)
 
@@ -97,8 +97,7 @@
 
 (defun generate-client (url filepath)
   (with-open-file (*standard-output* filepath :direction :output :if-exists :supersede)
-    (format t "(ql:quickload \"cl-mustache\")~%
-(ql:quickload \"drakma\")~%
+    (format t "(ql:quickload \"drakma\")~%
 (ql:quickload \"cl-json\")~%")
     (let ((json (fetch-json url)))
       (loop for paths in (get-in '(:paths) json)
@@ -114,4 +113,4 @@
     (convert-json-templete)))
 
 
-(generate-client "http://petstore.swagger.io/v2/swagger.json" "teest.lisp")
+(generate-client "http://petstore.swagger.io/v2/swagger.json" "test1.lisp")
