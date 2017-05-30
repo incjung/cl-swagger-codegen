@@ -61,6 +61,8 @@
 (mustache:define wrapper-call-templete-simple
   "
 ;;
+;; summary : {{summary}}
+;; description : {{description}}
 ;; * path : {{paths}}
 ;;
 (defun {{first-name}}-{{path-name}} (path content)
@@ -110,6 +112,8 @@
                                                         (:path-name . ,(lambda () (string-downcase (normalize-path-name (first paths)))))
                                                         (:first-name . ,(lambda () (string-downcase (format nil "~A" (first path)))))
                                                         (:method . ,(lambda() (format nil ":~A" (first path))))
+                                                        (:summary . ,(lambda() (format nil "~A" (get-in '(:summary) (cdr path)))))
+                                                        (:description . ,(lambda() (format nil "~A" (get-in '(:description) (cdr path)))))
                                                         (:accept . "application/json")
                                                         (:accept-type . "application/json"))))))
     (format t "~%~%~%")

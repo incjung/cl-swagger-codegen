@@ -5,6 +5,8 @@
 
 
 ;;
+;; summary : Add a new pet to the store
+;; description : 
 ;; * path : /PET
 ;;
 (defun post-pet (path content)
@@ -15,6 +17,8 @@
 
 
 ;;
+;; summary : Update an existing pet
+;; description : 
 ;; * path : /PET
 ;;
 (defun put-pet (path content)
@@ -25,6 +29,8 @@
 
 
 ;;
+;; summary : Finds Pets by status
+;; description : Multiple status values can be provided with comma separated strings
 ;; * path : /PET/FIND-BY-STATUS
 ;;
 (defun get-pet-find-by-status (path content)
@@ -35,6 +41,8 @@
 
 
 ;;
+;; summary : Finds Pets by tags
+;; description : Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
 ;; * path : /PET/FIND-BY-TAGS
 ;;
 (defun get-pet-find-by-tags (path content)
@@ -45,6 +53,8 @@
 
 
 ;;
+;; summary : Find pet by ID
+;; description : Returns a single pet
 ;; * path : /PET/{PET-ID}
 ;;
 (defun get-pet (path content)
@@ -55,6 +65,8 @@
 
 
 ;;
+;; summary : Updates a pet in the store with form data
+;; description : 
 ;; * path : /PET/{PET-ID}
 ;;
 (defun post-pet (path content)
@@ -65,6 +77,8 @@
 
 
 ;;
+;; summary : Deletes a pet
+;; description : 
 ;; * path : /PET/{PET-ID}
 ;;
 (defun delete-pet (path content)
@@ -75,6 +89,8 @@
 
 
 ;;
+;; summary : uploads an image
+;; description : 
 ;; * path : /PET/{PET-ID}/UPLOAD-IMAGE
 ;;
 (defun post-pet-upload-image (path content)
@@ -85,6 +101,8 @@
 
 
 ;;
+;; summary : Returns pet inventories by status
+;; description : Returns a map of status codes to quantities
 ;; * path : /STORE/INVENTORY
 ;;
 (defun get-store-inventory (path content)
@@ -95,6 +113,8 @@
 
 
 ;;
+;; summary : Place an order for a pet
+;; description : 
 ;; * path : /STORE/ORDER
 ;;
 (defun post-store-order (path content)
@@ -105,6 +125,8 @@
 
 
 ;;
+;; summary : Find purchase order by ID
+;; description : For valid response try integer IDs with value &gt;= 1 and &lt;= 10. Other values will generated exceptions
 ;; * path : /STORE/ORDER/{ORDER-ID}
 ;;
 (defun get-store-order (path content)
@@ -115,6 +137,8 @@
 
 
 ;;
+;; summary : Delete purchase order by ID
+;; description : For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors
 ;; * path : /STORE/ORDER/{ORDER-ID}
 ;;
 (defun delete-store-order (path content)
@@ -125,6 +149,8 @@
 
 
 ;;
+;; summary : Create user
+;; description : This can only be done by the logged in user.
 ;; * path : /USER
 ;;
 (defun post-user (path content)
@@ -135,6 +161,8 @@
 
 
 ;;
+;; summary : Creates list of users with given input array
+;; description : 
 ;; * path : /USER/CREATE-WITH-ARRAY
 ;;
 (defun post-user-create-with-array (path content)
@@ -145,6 +173,8 @@
 
 
 ;;
+;; summary : Creates list of users with given input array
+;; description : 
 ;; * path : /USER/CREATE-WITH-LIST
 ;;
 (defun post-user-create-with-list (path content)
@@ -155,6 +185,8 @@
 
 
 ;;
+;; summary : Logs user into the system
+;; description : 
 ;; * path : /USER/LOGIN
 ;;
 (defun get-user-login (path content)
@@ -165,6 +197,8 @@
 
 
 ;;
+;; summary : Logs out current logged in user session
+;; description : 
 ;; * path : /USER/LOGOUT
 ;;
 (defun get-user-logout (path content)
@@ -175,6 +209,8 @@
 
 
 ;;
+;; summary : Get user by user name
+;; description : 
 ;; * path : /USER/{USERNAME}
 ;;
 (defun get-user (path content)
@@ -185,6 +221,8 @@
 
 
 ;;
+;; summary : Updated user
+;; description : This can only be done by the logged in user.
 ;; * path : /USER/{USERNAME}
 ;;
 (defun put-user (path content)
@@ -195,6 +233,8 @@
 
 
 ;;
+;; summary : Delete user
+;; description : This can only be done by the logged in user.
 ;; * path : /USER/{USERNAME}
 ;;
 (defun delete-user (path content)
