@@ -156,3 +156,14 @@
     (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
                                 (cl-json:decode-json stream))
         (format t "failed - code : ~a" code))))
+
+
+(setf body (cl-json:encode-json-to-string '((id . 0)
+                                            (:category . ((:id . 0) (:name . "string")))
+                                            (:name . "doggie")
+                                            ("photoUrls" . #("string"))
+                                            (:tags . (((:id . 0)
+                                                       (:name . "string"))))
+                                            (:status . "available"))))
+
+(convert-json #'post-pet-call "pet" body)
