@@ -60,7 +60,7 @@
 
 (mustache:define wrapper-call-templete-simple
   "
-(defun {{first-name}}-{{path-name}}-call (path content)
+(defun {{first-name}}-{{path-name}} (path content)
     (multiple-value-bind (stream code header)
       (drakma:http-request (format nil \"~A/~A\" \"{{baseurl}}\" path) :accept \"{{accept}}\" :content-type \"{{accept-type}}\" :content content :want-stream t :method {{method}})
         (values code stream header)))")
@@ -114,3 +114,20 @@
 
 
 (generate-client "http://petstore.swagger.io/v2/swagger.json" "test1.lisp")
+
+
+  (with-open-file (*standard-output* "mapr.lisp" :direction :output :if-exists :supersede)
+    (format t "(ql:quickload \"drakma\")~%
+(ql:quickload \"cl-json\")~%")
+    (let ((json json))
+      (loop for paths in (get-in '(:paths) json)
+            do (loop for path in (rest paths)
+                     do (format t "~%~%~%")
+                        (wrapper-call-templete-simple `((:baseurl . ,(lambda () (make-urls json)))
+                                                        (:path-name . ,(lambda () (string-downcase (normalize-path-name (first paths)))))
+                                                        (:first-name . ,(lambda () (string-downcase (format nil "~A" (first path)))))
+                                                        (:method . ,(lambda() (format nil ":~A" (first path))))
+                                                        (:accept . "application/json")
+                                                        (:accept-type . "application/json"))))))
+    (format t "~%~%~%")
+    (convert-json-templete))
