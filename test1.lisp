@@ -1,10 +1,12 @@
 (ql:quickload "drakma")
-
 (ql:quickload "cl-json")
 
 
 
 
+;;
+;; * path : /PET
+;;
 (defun post-pet (path content)
     (multiple-value-bind (stream code header)
       (drakma:http-request (format nil "~A/~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
@@ -12,6 +14,9 @@
 
 
 
+;;
+;; * path : /PET
+;;
 (defun put-pet (path content)
     (multiple-value-bind (stream code header)
       (drakma:http-request (format nil "~A/~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :PUT)
@@ -19,6 +24,9 @@
 
 
 
+;;
+;; * path : /PET/FIND-BY-STATUS
+;;
 (defun get-pet-find-by-status (path content)
     (multiple-value-bind (stream code header)
       (drakma:http-request (format nil "~A/~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
@@ -26,6 +34,9 @@
 
 
 
+;;
+;; * path : /PET/FIND-BY-TAGS
+;;
 (defun get-pet-find-by-tags (path content)
     (multiple-value-bind (stream code header)
       (drakma:http-request (format nil "~A/~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
@@ -33,6 +44,9 @@
 
 
 
+;;
+;; * path : /PET/{PET-ID}
+;;
 (defun get-pet (path content)
     (multiple-value-bind (stream code header)
       (drakma:http-request (format nil "~A/~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
@@ -40,6 +54,9 @@
 
 
 
+;;
+;; * path : /PET/{PET-ID}
+;;
 (defun post-pet (path content)
     (multiple-value-bind (stream code header)
       (drakma:http-request (format nil "~A/~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
@@ -47,6 +64,9 @@
 
 
 
+;;
+;; * path : /PET/{PET-ID}
+;;
 (defun delete-pet (path content)
     (multiple-value-bind (stream code header)
       (drakma:http-request (format nil "~A/~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :DELETE)
@@ -54,6 +74,9 @@
 
 
 
+;;
+;; * path : /PET/{PET-ID}/UPLOAD-IMAGE
+;;
 (defun post-pet-upload-image (path content)
     (multiple-value-bind (stream code header)
       (drakma:http-request (format nil "~A/~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
@@ -61,6 +84,9 @@
 
 
 
+;;
+;; * path : /STORE/INVENTORY
+;;
 (defun get-store-inventory (path content)
     (multiple-value-bind (stream code header)
       (drakma:http-request (format nil "~A/~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
@@ -68,6 +94,9 @@
 
 
 
+;;
+;; * path : /STORE/ORDER
+;;
 (defun post-store-order (path content)
     (multiple-value-bind (stream code header)
       (drakma:http-request (format nil "~A/~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
@@ -75,6 +104,9 @@
 
 
 
+;;
+;; * path : /STORE/ORDER/{ORDER-ID}
+;;
 (defun get-store-order (path content)
     (multiple-value-bind (stream code header)
       (drakma:http-request (format nil "~A/~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
@@ -82,6 +114,9 @@
 
 
 
+;;
+;; * path : /STORE/ORDER/{ORDER-ID}
+;;
 (defun delete-store-order (path content)
     (multiple-value-bind (stream code header)
       (drakma:http-request (format nil "~A/~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :DELETE)
@@ -89,6 +124,9 @@
 
 
 
+;;
+;; * path : /USER
+;;
 (defun post-user (path content)
     (multiple-value-bind (stream code header)
       (drakma:http-request (format nil "~A/~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
@@ -96,6 +134,9 @@
 
 
 
+;;
+;; * path : /USER/CREATE-WITH-ARRAY
+;;
 (defun post-user-create-with-array (path content)
     (multiple-value-bind (stream code header)
       (drakma:http-request (format nil "~A/~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
@@ -103,6 +144,9 @@
 
 
 
+;;
+;; * path : /USER/CREATE-WITH-LIST
+;;
 (defun post-user-create-with-list (path content)
     (multiple-value-bind (stream code header)
       (drakma:http-request (format nil "~A/~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
@@ -110,6 +154,9 @@
 
 
 
+;;
+;; * path : /USER/LOGIN
+;;
 (defun get-user-login (path content)
     (multiple-value-bind (stream code header)
       (drakma:http-request (format nil "~A/~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
@@ -117,6 +164,9 @@
 
 
 
+;;
+;; * path : /USER/LOGOUT
+;;
 (defun get-user-logout (path content)
     (multiple-value-bind (stream code header)
       (drakma:http-request (format nil "~A/~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
@@ -124,6 +174,9 @@
 
 
 
+;;
+;; * path : /USER/{USERNAME}
+;;
 (defun get-user (path content)
     (multiple-value-bind (stream code header)
       (drakma:http-request (format nil "~A/~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
@@ -131,6 +184,9 @@
 
 
 
+;;
+;; * path : /USER/{USERNAME}
+;;
 (defun put-user (path content)
     (multiple-value-bind (stream code header)
       (drakma:http-request (format nil "~A/~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :PUT)
@@ -138,6 +194,9 @@
 
 
 
+;;
+;; * path : /USER/{USERNAME}
+;;
 (defun delete-user (path content)
     (multiple-value-bind (stream code header)
       (drakma:http-request (format nil "~A/~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :DELETE)
