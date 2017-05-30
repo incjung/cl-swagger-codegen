@@ -65,7 +65,7 @@
 ;;
 (defun {{first-name}}-{{path-name}} (path content)
     (multiple-value-bind (stream code header)
-      (drakma:http-request (format nil \"~A/~A\" \"{{baseurl}}\" path) :accept \"{{accept}}\" :content-type \"{{accept-type}}\" :content content :want-stream t :method {{method}})
+      (drakma:http-request (format nil \"~A~A\" \"{{baseurl}}\" path) :accept \"{{accept}}\" :content-type \"{{accept-type}}\" :content content :want-stream t :method {{method}})
         (values code stream header)))")
 
 
@@ -73,7 +73,7 @@
 (mustache:define convert-json-templete
   "
 ;;
-;; (convert-json #'function path content-json)
+;; (convert-json #'function \"/path\" content-json)
 ;;
 (defun convert-json (query-fun path body)
   (multiple-value-bind (code stream head)
