@@ -2,10 +2,6 @@
 (ql:quickload "drakma")
 (ql:quickload "cl-json")
 
-;;(defparameter json (cl-json:decode-json-from-source #p"~/development/swagger/mapr-swagger-ui/mapr.json"))
-;;(defparameter json (fetch-json "http://petstore.swagger.io/v2/swagger.json"))
-
-
 (defun fetch-json (url)
   (multiple-value-bind (body response-code)
       (drakma:http-request url :want-stream t)
@@ -85,22 +81,7 @@
         (format t \"failed - code : ~a\" code))))")
 
 
-
-;;(defun convert-json (query-fun path body)
-;;  (multiple-value-bind (code stream head)
-;;      (funcall query-fun path body)
-;;    (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
-;;                                (cl-json:decode-json stream))
-;;        (format t "failed - code : ~a" code))))
-
-;;(post-pet-call "apet" body)
-
-;;(convert-json #'post-pet-call "pet" body)
-
-;;(setf sss (convert-json #'post-pet-call "pet1" body))
-
-
-(defun generate-client (url filepath)
+(defun generate-client (url filepath &optional accept accept-type)
   (with-open-file (*standard-output* filepath :direction :output :if-exists :supersede)
     (format t "(ql:quickload \"drakma\")~%(ql:quickload \"cl-json\")~%")
     (let ((json (fetch-json url)))
@@ -114,10 +95,34 @@
                                                         (:method . ,(lambda() (format nil ":~A" (first path))))
                                                         (:summary . ,(lambda() (format nil "~A" (get-in '(:summary) (cdr path)))))
                                                         (:description . ,(lambda() (format nil "~A" (get-in '(:description) (cdr path)))))
-                                                        (:accept . "application/json")
-                                                        (:accept-type . "application/json"))))))
+                                                        (:accept . ,(lambda () (if accept accept "application/json")))
+                                                        (:accept-type . ,(lambda () (if accept-type accept-type "application/json"))))))))
     (format t "~%~%~%")
     (convert-json-templete)))
 
 
-(generate-client "http://petstore.swagger.io/v2/swagger.json" "test1.lisp")
+(defun generate-client-with-json (json filepath &optional accept accept-type)
+  (with-open-file (*standard-output* filepath :direction :output :if-exists :supersede)
+    (format t "(ql:quickload \"drakma\")~%(ql:quickload \"cl-json\")~%")
+    (loop for paths in (get-in '(:paths) json)
+          do (loop for path in (rest paths)
+                   do (format t "~%~%~%")
+                      (wrapper-call-templete-simple `((:baseurl . ,(lambda () (make-urls json)))
+                                                      (:paths . ,(lambda () (car paths)))
+                                                      (:path-name . ,(lambda () (string-downcase (normalize-path-name (first paths)))))
+                                                      (:first-name . ,(lambda () (string-downcase (format nil "~A" (first path)))))
+                                                      (:method . ,(lambda() (format nil ":~A" (first path))))
+                                                      (:summary . ,(lambda() (format nil "~A" (get-in '(:summary) (cdr path)))))
+                                                      (:description . ,(lambda() (format nil "~A" (get-in '(:description) (cdr path)))))
+                                                      (:accept . ,(lambda () (if accept accept "application/json")))
+                                                      (:accept-type . ,(lambda () (if accept-type accept-type "application/json")))))))
+  (format t "~%~%~%")
+  (convert-json-templete)))
+
+
+(defun generate-client (url filepath &optional accept accept-type)
+  (if (typep url 'pathname) (generate-client-with-json (cl-json:decode-json-from-source url) filepath accept accept-type)
+      (generate-client-with-json (fetch-json url) filepath accept accept-type)))
+
+;;; (generate-client "http://petstore.swagger.io/v2/swagger.json" "test1.lisp")
+;;; (generate-client #p"~/development/swagger/mapr-swagger-ui/mapr.json" "test2.lisp")

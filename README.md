@@ -7,10 +7,19 @@ cl-swagger-codegen generates API client for common lisp.
 
 ## Generate Client Code ##
 
-You can build a client, (for example `test1.lisp`) against the swagger sample petstore API as follows:
+
+### From swagger url ###
+You can build a client, (for example `test1.lisp`) against the swagger url as follows:
 
 ```
 (generate-client "http://petstore.swagger.io/v2/swagger.json" "test1.lisp")
+```
+
+### From swagger json file ###
+You can build a client, (for example `test2.lisp`) against the swagger json file:
+
+```
+(generate-client #p"./mapr.json" "test2.lisp")
 ```
 
 
