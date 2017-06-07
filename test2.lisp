@@ -18,11 +18,7 @@
 
 ;;
 ;; summary : Modifies the ACL for a cluster or volume.
-;; description : The `acl set` command specifies the entire ACL for a cluster or volume. Any previous permissions are overwritten by the new values, and any permissions omitted are removed. To use the `acl set` command, you must have administrative (a) permissions on the volume and cluster for which you are running the command. The permissions are specified as a comma-separated list of permission codes. See [acl](http://maprdocs.mapr.com/home/ReferenceGuide/acl.html). You must specify either a `user` or a `group`. When the `type` is `volume`, a volume name must be specified using the `name` parameter.
-
- 
-
-Note: The `acl set` command removes any previous ACL values. If you wish to preserve some of the permissions, you should either use the  [`acl edit`](http://maprdocs.mapr.com/home/ReferenceGuide/acl-edit.html)  command instead of `acl set`, or use  [`acl show`](http://maprdocs.mapr.com/home/ReferenceGuide/acl-show.html)  to list the values before overwriting them.
+;; description : The `acl set` command specifies the entire ACL for a cluster or volume. Any previous permissions are overwritten by the new values, and any permissions omitted are removed. To use the `acl set` command, you must have administrative (a) permissions on the volume and cluster for which you are running the command. The permissions are specified as a comma-separated list of permission codes. See [acl](http://maprdocs.mapr.com/home/ReferenceGuide/acl.html). You must specify either a `user` or a `group`. When the `type` is `volume`, a volume name must be specified using the `name` parameter.\n\n \n\nNote: The `acl set` command removes any previous ACL values. If you wish to preserve some of the permissions, you should either use the  [`acl edit`](http://maprdocs.mapr.com/home/ReferenceGuide/acl-edit.html)  command instead of `acl set`, or use  [`acl show`](http://maprdocs.mapr.com/home/ReferenceGuide/acl-show.html)  to list the values before overwriting them.
 ;; * path : /ACL/SET
 ;;
 (defun get-acl-set (path content)
@@ -130,11 +126,7 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
 
 ;;
 ;; summary : Enables and disables auditing of operations that are related to the administration of a MapR cluster.
-;; description : Only the `mapr` user for the cluster can run this command. For more information about the mapr user, see [Managing Users and Groups](http://maprdocs.mapr.com/home/AdministratorGuide/c-managing-users-and-groups.html#Managing-Users-and-Groups-rootisusedtoinstallM-d3e62).
-
- 
-
-For information about auditing cluster-administration operations, see [Auditing of Activity Related to Cluster Administration](http://maprdocs.mapr.com/home/SecurityGuide/AuditingClusterAdminActivity.html#AuditingofActivityRelatedtoClusterAdministration).
+;; description : Only the `mapr` user for the cluster can run this command. For more information about the mapr user, see [Managing Users and Groups](http://maprdocs.mapr.com/home/AdministratorGuide/c-managing-users-and-groups.html#Managing-Users-and-Groups-rootisusedtoinstallM-d3e62).\n\n \n\nFor information about auditing cluster-administration operations, see [Auditing of Activity Related to Cluster Administration](http://maprdocs.mapr.com/home/SecurityGuide/AuditingClusterAdminActivity.html#AuditingofActivityRelatedtoClusterAdministration).
 ;; * path : /AUDIT/CLUSTER
 ;;
 (defun get-audit-cluster (path content)
@@ -146,11 +138,7 @@ For information about auditing cluster-administration operations, see [Auditing 
 
 ;;
 ;; summary : Enables and disables auditing of filesystem and table operations.
-;; description : For a list of these operations, see [Auditing of Filesystem Operations and Table Operations](http://maprdocs.mapr.com/home/SecurityGuide/Auditing-FilesystemTableOperations.html#AuditingofFilesystemOperationsandTableOperations).
-
- 
-
-Only the `mapr` user for the cluster can run this command. For more information about the mapr user, see [Managing Users and Groups](http://maprdocs.mapr.com/home/AdministratorGuide/c-managing-users-and-groups.html).
+;; description : For a list of these operations, see [Auditing of Filesystem Operations and Table Operations](http://maprdocs.mapr.com/home/SecurityGuide/Auditing-FilesystemTableOperations.html#AuditingofFilesystemOperationsandTableOperations).\n\n \n\nOnly the `mapr` user for the cluster can run this command. For more information about the mapr user, see [Managing Users and Groups](http://maprdocs.mapr.com/home/AdministratorGuide/c-managing-users-and-groups.html).
 ;; * path : /AUDIT/DATA
 ;;
 (defun get-audit-data (path content)
@@ -174,15 +162,7 @@ Only the `mapr` user for the cluster can run this command. For more information 
 
 ;;
 ;; summary : Deletes the list of MapR gateways from a source MapR cluster.
-;; description : Source MapR clusters can use such lists to locate the gateways that enable replication of table data to a particular MapR cluster or indexing of table data in a particular Elasticsearch cluster. You create lists of gateways by running the `maprcli cluster gateway set` command.
-
- 
-
-There are three methods of specifying the location of gateways to a MapR cluster that is a source for table replication or indexing in Elasticsearch. If a source MapR cluster relies on DNS records to find out where gateways are located, or the cluster relies on the `mapr-clusters.conf` file to locate gateways, there is no list for the cluster gateway delete command to delete. 
-
- 
-
-Note: Deleting a list of gateways with the `maprcli cluster gateway delete` command does not uninstall the listed gateways from the MapR cluster where they are located.
+;; description : Source MapR clusters can use such lists to locate the gateways that enable replication of table data to a particular MapR cluster or indexing of table data in a particular Elasticsearch cluster. You create lists of gateways by running the `maprcli cluster gateway set` command.\n\n \n\nThere are three methods of specifying the location of gateways to a MapR cluster that is a source for table replication or indexing in Elasticsearch. If a source MapR cluster relies on DNS records to find out where gateways are located, or the cluster relies on the `mapr-clusters.conf` file to locate gateways, there is no list for the cluster gateway delete command to delete. \n\n \n\nNote: Deleting a list of gateways with the `maprcli cluster gateway delete` command does not uninstall the listed gateways from the MapR cluster where they are located.
 ;; * path : /CLUSTER/GATEWAY/DELETE
 ;;
 (defun get-cluster-gateway-delete (path content)
@@ -194,11 +174,7 @@ Note: Deleting a list of gateways with the `maprcli cluster gateway delete` comm
 
 ;;
 ;; summary : Lists the MapR gateways that a source MapR cluster is using.
-;; description : The source MapR cluster could be using the MapR gateways either for replication of table data to a destination MapR cluster or for the indexing of data in an Elasticsearch cluster.
-
- 
-
-This list of gateways is created by the `maprcli cluster gateway set` command.
+;; description : The source MapR cluster could be using the MapR gateways either for replication of table data to a destination MapR cluster or for the indexing of data in an Elasticsearch cluster.\n\n \n\nThis list of gateways is created by the `maprcli cluster gateway set` command.
 ;; * path : /CLUSTER/GATEWAY/GET
 ;;
 (defun get-cluster-gateway-get (path content)
@@ -210,11 +186,7 @@ This list of gateways is created by the `maprcli cluster gateway set` command.
 
 ;;
 ;; summary : Lists all of the gateways that a source MapR cluster is using.
-;; description : The source MapR cluster is using gateways either for replication of table data to destination MapR clusters or for the indexing of table data in Elasticsearch clusters.
-
- 
-
-This list is created by the `maprcli cluster gateway set` command.
+;; description : The source MapR cluster is using gateways either for replication of table data to destination MapR clusters or for the indexing of table data in Elasticsearch clusters.\n\n \n\nThis list is created by the `maprcli cluster gateway set` command.
 ;; * path : /CLUSTER/GATEWAY/LIST
 ;;
 (defun get-cluster-gateway-list (path content)
@@ -238,37 +210,7 @@ This list is created by the `maprcli cluster gateway set` command.
 
 ;;
 ;; summary : Lists the gateways configured on MapR cluster that are up and running at the time that the command is issued.
-;; description : Execute this command on a source MapR cluster to find out how many gateways are available for table replication to a destination MapR cluster or for indexing table data in an Elasticsearch cluster.
-
- 
-
-This command uses the following criteria to get the list:
-
- 
- 
-*  
-
-If the locations of the gateways were specified with the `marpcli cluster gateway set` command, the maprcli cluster gateway resolve command returns the list of the gateways.
-
-  
-*  
-
-If the locations of the gateways were specified with a DNS record only, this command performs a DNS lookup for gateways on the specified MapR cluster and returns the list that it finds.
-
-  
-*  
-
-If neither of the previous methods was used to specify the locations of the gateways, this command assumes that gateways are located on the CLDB nodes configured in the `mapr-clusters.conf` file on the MapR cluster where the command is executed.
-
-  
-
- 
-
-Note: Unresponsive gateways are not included in the list.
-
- 
-
-For more information about gateways, see [ MapR Gateways](http://maprdocs.mapr.com/home/Gateways/MapRGateways.html).
+;; description : Execute this command on a source MapR cluster to find out how many gateways are available for table replication to a destination MapR cluster or for indexing table data in an Elasticsearch cluster.\n\n \n\nThis command uses the following criteria to get the list:\n\n \n \n*  \n\nIf the locations of the gateways were specified with the `marpcli cluster gateway set` command, the maprcli cluster gateway resolve command returns the list of the gateways.\n\n  \n*  \n\nIf the locations of the gateways were specified with a DNS record only, this command performs a DNS lookup for gateways on the specified MapR cluster and returns the list that it finds.\n\n  \n*  \n\nIf neither of the previous methods was used to specify the locations of the gateways, this command assumes that gateways are located on the CLDB nodes configured in the `mapr-clusters.conf` file on the MapR cluster where the command is executed.\n\n  \n\n \n\nNote: Unresponsive gateways are not included in the list.\n\n \n\nFor more information about gateways, see [ MapR Gateways](http://maprdocs.mapr.com/home/Gateways/MapRGateways.html).
 ;; * path : /CLUSTER/GATEWAY/RESOLVE
 ;;
 (defun get-cluster-gateway-resolve (path content)
@@ -448,37 +390,7 @@ For more information about gateways, see [ MapR Gateways](http://maprdocs.mapr.c
 
 ;;
 ;; summary : Removes a disk from MapR-FS. Permissions required: fc or a .
-;; description : The `disk remove` command does not remove a disk containing unreplicated data unless forced. To force disk removal, specify `-force` with the value `1`.
-
- 
-
-Note: 
- 
-* Only use the `-force 1` option if you are sure that you do not need the data on the disk. This option removes the disk without regard to replication factor or other data protection mechanisms, and may result in permanent data loss. 
-* Removing a disk in the storage pool that contains Container ID 1 will stop your cluster. Container ID 1 contains CLDB data for the master CLDB. Run `disk remove` without the `-force 1` option first and examine the warning messages to make sure you aren&#39;t removing the disk with Container ID 1. If you try to remove a disk associated with the storage pool that contains Container ID 1, you will see an error message similar to the following: 
-
-```
-ERROR (151) -  Failed operation for disk /dev/sdb, Operation may bring 
-down cluster due to loss of cluster meta-data.
-```
-
- If necessary, run the following command for information on the disk associated with the storage pool that contains Container ID 1: 
-
-```
-/opt/mapr/server/mrconfig info dumpcontainers  | grep cid:1
-```
-
- The command output may look similar to the following: 
-
-```
-cid:1 volid:1 sp:SP1:/dev/sdb spid:82380c287085486f0058112ecf016b76 
-prev:0 next:0 issnap:0 isclone:0 deleteinprog:0 fixedbyfsck:0 stale:0 
-querycldb:0 resyncinprog:0 shared:0 owned:206 logical:206 snapusage:0 
-snapusageupdated:1 ismirror:0 isrwmirrorcapable:0 role:1 maxUniq:2100150 
-isResyncSnapshot:0 snapId:0 port:5660
-```
-
- To safely remove such a disk, perform a [CLDB Failover](http://maprdocs.mapr.com/home/AdministratorGuide/CLDB-Failover.html#CLDB-Failover-TheCLDBserviceautoma-d3e78) to make one of the other CLDB nodes the primary CLDB, then remove the disk as normal.
+;; description : The `disk remove` command does not remove a disk containing unreplicated data unless forced. To force disk removal, specify `-force` with the value `1`.\n\n \n\nNote: \n \n* Only use the `-force 1` option if you are sure that you do not need the data on the disk. This option removes the disk without regard to replication factor or other data protection mechanisms, and may result in permanent data loss. \n* Removing a disk in the storage pool that contains Container ID 1 will stop your cluster. Container ID 1 contains CLDB data for the master CLDB. Run `disk remove` without the `-force 1` option first and examine the warning messages to make sure you aren't removing the disk with Container ID 1. If you try to remove a disk associated with the storage pool that contains Container ID 1, you will see an error message similar to the following: \n\n```\nERROR (151) -  Failed operation for disk /dev/sdb, Operation may bring \ndown cluster due to loss of cluster meta-data.\n```\n\n If necessary, run the following command for information on the disk associated with the storage pool that contains Container ID 1: \n\n```\n/opt/mapr/server/mrconfig info dumpcontainers  | grep cid:1\n```\n\n The command output may look similar to the following: \n\n```\ncid:1 volid:1 sp:SP1:/dev/sdb spid:82380c287085486f0058112ecf016b76 \nprev:0 next:0 issnap:0 isclone:0 deleteinprog:0 fixedbyfsck:0 stale:0 \nquerycldb:0 resyncinprog:0 shared:0 owned:206 logical:206 snapusage:0 \nsnapusageupdated:1 ismirror:0 isrwmirrorcapable:0 role:1 maxUniq:2100150 \nisResyncSnapshot:0 snapId:0 port:5660\n```\n\n To safely remove such a disk, perform a [CLDB Failover](http://maprdocs.mapr.com/home/AdministratorGuide/CLDB-Failover.html#CLDB-Failover-TheCLDBserviceautoma-d3e78) to make one of the other CLDB nodes the primary CLDB, then remove the disk as normal.
 ;; * path : /DISK/REMOVE
 ;;
 (defun get-disk-remove (path content)
@@ -562,11 +474,7 @@ isResyncSnapshot:0 snapId:0 port:5660
 
 ;;
 ;; summary : Creates symbolic links to all the logs relating to the activity of a specific job.
-;; description : The `maprcli job linklogs` command works with the [Centralized Logging](http://maprdocs.mapr.com/home/AdministratorGuide/Centralized-Logging.html#Centralized-Logging-MapRsCentralizedLog-d3e72) to provide a job-centric view or an application-centric view of all log files generated during job or application execution.
-
- 
-
- The output of `job linklogs` is a directory populated with symbolic links to all log files related to the specified job(s) or to the application. The command can be performed during or after a job or application is processed.
+;; description : The `maprcli job linklogs` command works with the [Centralized Logging](http://maprdocs.mapr.com/home/AdministratorGuide/Centralized-Logging.html#Centralized-Logging-MapRsCentralizedLog-d3e72) to provide a job-centric view or an application-centric view of all log files generated during job or application execution.\n\n \n\n The output of `job linklogs` is a directory populated with symbolic links to all log files related to the specified job(s) or to the application. The command can be performed during or after a job or application is processed.
 ;; * path : /JOB/LINKLOGS
 ;;
 (defun get-job-linklogs (path content)
@@ -734,14 +642,7 @@ isResyncSnapshot:0 snapId:0 port:5660
 
 ;;
 ;; summary : Lists nodes in the cluster.
-;; description : You can specify a set of nodes for which to retrieve information in several ways:
-
- 
- 
-* To list only nodes with raised alarms, set `alarmednodes` to 1. 
-* To list only NFS nodes, set `nfsnodes` to 1. 
-* To window the list, use the `start` and `limit` options to select only a portion of the results. 
-* To list nodes that match certain criteria, pass a filter to the `filter` parameter. See the Fields table on the [node](http://maprdocs.mapr.com/home/ReferenceGuide/node.html) page for the fields available to filter. See the [maprcli and REST API Syntax](http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax-Filters.html#concept_znz_qxz_5t) page for information on filters.
+;; description : You can specify a set of nodes for which to retrieve information in several ways:\n\n \n \n* To list only nodes with raised alarms, set `alarmednodes` to 1. \n* To list only NFS nodes, set `nfsnodes` to 1. \n* To window the list, use the `start` and `limit` options to select only a portion of the results. \n* To list nodes that match certain criteria, pass a filter to the `filter` parameter. See the Fields table on the [node](http://maprdocs.mapr.com/home/ReferenceGuide/node.html) page for the fields available to filter. See the [maprcli and REST API Syntax](http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax-Filters.html#concept_znz_qxz_5t) page for information on filters.
 ;; * path : /NODE/LIST
 ;;
 (defun get-node-list (path content)
@@ -789,7 +690,7 @@ isResyncSnapshot:0 snapId:0 port:5660
 
 ;;
 ;; summary : Places a node into a maintenance mode for a specified timeout duration.
-;; description : For the duration of the timeout, the cluster&#39;s CLDB does not consider this node&#39;s data as lost and does not trigger a resync of the data on this node. See [Managing Nodes](http://maprdocs.mapr.com/home/AdministratorGuide/c-managing-nodes.html) for more information.
+;; description : For the duration of the timeout, the cluster's CLDB does not consider this node's data as lost and does not trigger a resync of the data on this node. See [Managing Nodes](http://maprdocs.mapr.com/home/AdministratorGuide/c-managing-nodes.html) for more information.
 ;; * path : /NODE/MAINTENANCE
 ;;
 (defun get-node-maintenance (path content)
@@ -825,12 +726,7 @@ isResyncSnapshot:0 snapId:0 port:5660
 
 ;;
 ;; summary : Starts, stops, or restarts services on one or more server nodes. Permissions required: ss , fc or a .
-;; description : To start or stop services, you must specify the service name, the action (start, stop, or restart), and the nodes on which to perform the action. You can specify the nodes in either of two ways:
-
- 
- 
-* Use the `nodes` parameter to specify a space-delimited list of node names. 
-* Use the `filter` parameter to specify all nodes that match a certain pattern. See [Filters](http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax-Filters.html) for more information.
+;; description : To start or stop services, you must specify the service name, the action (start, stop, or restart), and the nodes on which to perform the action. You can specify the nodes in either of two ways:\n\n \n \n* Use the `nodes` parameter to specify a space-delimited list of node names. \n* Use the `filter` parameter to specify all nodes that match a certain pattern. See [Filters](http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax-Filters.html) for more information.
 ;; * path : /NODE/SERVICES
 ;;
 (defun get-node-services (path content)
@@ -902,13 +798,7 @@ isResyncSnapshot:0 snapId:0 port:5660
 
 ;;
 ;; summary : Modifies an existing schedule, specified by ID. Permissions required: fc or a .
-;; description : To find a schedule&#39;s ID:
-
- 
- 
-1. Use the [schedule list](http://maprdocs.mapr.com/home/ReferenceGuide/schedule-list.html) command to list the schedules. 
-1. Select the schedule to modify. 
-1. Pass the selected schedule&#39;s ID in the -id parameter to the `schedule modify` command.
+;; description : To find a schedule's ID:\n\n \n \n1. Use the [schedule list](http://maprdocs.mapr.com/home/ReferenceGuide/schedule-list.html) command to list the schedules. \n1. Select the schedule to modify. \n1. Pass the selected schedule's ID in the -id parameter to the `schedule modify` command.
 ;; * path : /SCHEDULE/MODIFY
 ;;
 (defun get-schedule-modify (path content)
@@ -1028,17 +918,7 @@ isResyncSnapshot:0 snapId:0 port:5660
 
 ;;
 ;; summary : For the given stream, lists consumers and the topics and partitions that the consumers are reading messages from.
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /STREAM/ASSIGN/LIST
 ;;
 (defun get-stream-assign-list (path content)
@@ -1050,30 +930,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 ;;
 ;; summary : Creates a new stream.
-;; description : After you create a stream, you can edit the values of its parameters with the command `maprcli stream edit`.
-
-To see the value of a stream&#39;s parameters, use the command `maprcli stream info`.
-
- 
-
-To run this command, your user ID must have write permission on the directory in which you want to create a stream.
-
- 
-
- 
-
-
-
-## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : After you create a stream, you can edit the values of its parameters with the command `maprcli stream edit`.\n\nTo see the value of a stream's parameters, use the command `maprcli stream info`.\n\n \n\nTo run this command, your user ID must have write permission on the directory in which you want to create a stream.\n\n \n\n \n\n\n\n## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /STREAM/CREATE
 ;;
 (defun get-stream-create (path content)
@@ -1085,29 +942,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 ;;
 ;; summary : Deletes committed cursors that are in the partitions in a stream.
-;; description : Note: Deleting the committed cursors for active consumers has no effect on the consumers. Consumers use read cursors to keep track of where they currently are in partitions. 
-
-For example, the consumer `consumer1` continues reading the messages in a partition from the position of the consumer&#39;s read cursor even after the consumer&#39;s committed cursor is deleted. However, if `consumer1` goes offline and the partition is reassigned to another consumer (`consumer2`) in the same consumer group before `consumer1` creates another committed cursor, `consumer2` starts reading the partition at the most recent message.
-
- 
-
- 
-
- 
-
-
-
-## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminperm` or `consumeperm` permission on the stream 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : Note: Deleting the committed cursors for active consumers has no effect on the consumers. Consumers use read cursors to keep track of where they currently are in partitions. \n\nFor example, the consumer `consumer1` continues reading the messages in a partition from the position of the consumer's read cursor even after the consumer's committed cursor is deleted. However, if `consumer1` goes offline and the partition is reassigned to another consumer (`consumer2`) in the same consumer group before `consumer1` creates another committed cursor, `consumer2` starts reading the partition at the most recent message.\n\n \n\n \n\n \n\n\n\n## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminperm` or `consumeperm` permission on the stream \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /STREAM/CURSOR/DELETE
 ;;
 (defun get-stream-cursor-delete (path content)
@@ -1119,17 +954,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 ;;
 ;; summary : Lists the cursors for the consumers of a stream.
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /STREAM/CURSOR/LIST
 ;;
 (defun get-stream-cursor-list (path content)
@@ -1141,22 +966,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 ;;
 ;; summary : Deletes the specified stream. Deleted streams cannot be recovered unless they were previously replicated.
-;; description : Producers are no longer able to publish messages to topics in the stream, and consumers are no longer able to read messages from topics in the stream.
-
- 
-
-
-
-## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : Producers are no longer able to publish messages to topics in the stream, and consumers are no longer able to read messages from topics in the stream.\n\n \n\n\n\n## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /STREAM/DELETE
 ;;
 (defun get-stream-delete (path content)
@@ -1168,17 +978,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 ;;
 ;; summary : Edits the values of parameters for the specified stream.
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminperm` permission on the stream 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminperm` permission on the stream \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /STREAM/EDIT
 ;;
 (defun get-stream-edit (path content)
@@ -1190,17 +990,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 ;;
 ;; summary : Displays the values of the parameters of the specified stream.
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-*   **`adminperm`**&lt;br/&gt; When a user with this permission runs the command, the output includes the access-control expressions for the `adminperm` and `topicperm` permissions.&lt;br/&gt; **`produceperm`, `consumeperm`, or `topicperm`**&lt;br/&gt; When a user with one of these permissions runs the command, the output does not include any access-control expressions.&lt;br/&gt;   
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n*   **`adminperm`**<br/> When a user with this permission runs the command, the output includes the access-control expressions for the `adminperm` and `topicperm` permissions.<br/> **`produceperm`, `consumeperm`, or `topicperm`**<br/> When a user with one of these permissions runs the command, the output does not include any access-control expressions.<br/>   \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /STREAM/INFO
 ;;
 (defun get-stream-info (path content)
@@ -1212,27 +1002,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 ;;
 ;; summary : Runs the purge process, removing messages that are marked for deletion and reclaiming disk space.
-;; description : For information about the purge process, see [Setting the Time-to-Live for Messages](http://maprdocs.mapr.com/home/MapR_Streams/time_to_live_for_messages.html#time_to_live_for_messages__title).
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
-
- 
-
- 
-
-
-
-## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminperm` permission on the stream 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : For information about the purge process, see [Setting the Time-to-Live for Messages](http://maprdocs.mapr.com/home/MapR_Streams/time_to_live_for_messages.html#time_to_live_for_messages__title).\n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.\n\n \n\n \n\n\n\n## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminperm` permission on the stream \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /STREAM/PURGE
 ;;
 (defun get-stream-purge (path content)
@@ -1244,30 +1014,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 ;;
 ;; summary : Registers an existing stream as a replica of the specified stream.
-;; description : ## Permissions Required at the Source Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminperm` and `copyperm` permissions on the source stream 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
-
- 
-
- 
-
-
-
-## Permissions Required at the Target Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
+;; description : ## Permissions Required at the Source Cluster\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminperm` and `copyperm` permissions on the source stream \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.\n\n \n\n \n\n\n\n## Permissions Required at the Target Cluster\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
 ;; * path : /STREAM/REPLICA/ADD
 ;;
 (defun get-stream-replica-add (path content)
@@ -1279,46 +1026,7 @@ To run this command, your user ID must have the following permissions:
 
 ;;
 ;; summary : Sets up and starts replication between a source stream and replica stream.
-;; description : The `maprcli stream replica autosetup` command performs the following steps to set up replication:
- 
-1. Creates a stream in the destination cluster. 
-1. Declares the new stream to be a replica of the source stream and ensures that replication does not begin immediately after the next step. 
-1. Declares the source stream as the original of the replica stream. 
-1. Runs the `mapr copystream` utility to load a copy of the source data into the replica. 
-1. Clears the paused replication state to start replication. 
-
- 
-
- 
-
- 
-
-
-
-## Permissions Required at the Source Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminperm` and `copyperm` permissions on the source stream 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
-
- 
-
- 
-
-
-
-## Permissions Required at the Target Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
+;; description : The `maprcli stream replica autosetup` command performs the following steps to set up replication:\n \n1. Creates a stream in the destination cluster. \n1. Declares the new stream to be a replica of the source stream and ensures that replication does not begin immediately after the next step. \n1. Declares the source stream as the original of the replica stream. \n1. Runs the `mapr copystream` utility to load a copy of the source data into the replica. \n1. Clears the paused replication state to start replication. \n\n \n\n \n\n \n\n\n\n## Permissions Required at the Source Cluster\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminperm` and `copyperm` permissions on the source stream \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.\n\n \n\n \n\n\n\n## Permissions Required at the Target Cluster\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
 ;; * path : /STREAM/REPLICA/AUTOSETUP
 ;;
 (defun get-stream-replica-autosetup (path content)
@@ -1330,30 +1038,7 @@ To run this command, your user ID must have the following permissions:
 
 ;;
 ;; summary : Modifies the way in which messages are replicated from one stream to another.
-;; description : ## Permissions Required at the Source Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminperm` permission on the source stream 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
-
- 
-
- 
-
-
-
-## Permissions Required at the Target Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
+;; description : ## Permissions Required at the Source Cluster\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminperm` permission on the source stream \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.\n\n \n\n \n\n\n\n## Permissions Required at the Target Cluster\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
 ;; * path : /STREAM/REPLICA/EDIT
 ;;
 (defun get-stream-replica-edit (path content)
@@ -1365,17 +1050,7 @@ To run this command, your user ID must have the following permissions:
 
 ;;
 ;; summary : Lists the replicas of a given stream.
-;; description : ## Permissions Required on the Source Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminperm` permission on the source stream 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required on the Source Cluster\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminperm` permission on the source stream \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /STREAM/REPLICA/LIST
 ;;
 (defun get-stream-replica-list (path content)
@@ -1387,17 +1062,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 ;;
 ;; summary : Pauses replication from a source stream to a replica stream.
-;; description : ## Permissions Required on the Source Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminperm` permission on the source stream 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required on the Source Cluster\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminperm` permission on the source stream \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /STREAM/REPLICA/PAUSE
 ;;
 (defun get-stream-replica-pause (path content)
@@ -1409,17 +1074,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 ;;
 ;; summary : Unregisters a stream as the replica of another stream.
-;; description : ## Permissions Required on the Source Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminperm` permission on the source stream 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required on the Source Cluster\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminperm` permission on the source stream \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /STREAM/REPLICA/REMOVE
 ;;
 (defun get-stream-replica-remove (path content)
@@ -1431,17 +1086,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 ;;
 ;; summary : Resumes replication from one stream to another stream.
-;; description : ## Permissions Required on the Source Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminperm` permission on the source stream 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required on the Source Cluster\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminperm` permission on the source stream \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /STREAM/REPLICA/RESUME
 ;;
 (defun get-stream-replica-resume (path content)
@@ -1453,17 +1098,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 ;;
 ;; summary : Registers a stream as an upstream source for a given stream. For example, if you wanted to replicate messages from Stream_A to Stream_B , Stream_A would be the upstream source for Stream_B .
-;; description : ## Permissions Required on the Target Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminperm` permission on the source stream 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required on the Target Cluster\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminperm` permission on the source stream \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /STREAM/UPSTREAM/ADD
 ;;
 (defun get-stream-upstream-add (path content)
@@ -1475,17 +1110,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 ;;
 ;; summary : Lists all of the streams that are replicating to a given stream.
-;; description : ## Permissions Required on the Target Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminperm` permission on the source stream 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required on the Target Cluster\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminperm` permission on the source stream \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /STREAM/UPSTREAM/LIST
 ;;
 (defun get-stream-upstream-list (path content)
@@ -1497,17 +1122,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 ;;
 ;; summary : Unregisters a stream as an upstream source for a given stream.
-;; description : ## Permissions Required on the Target Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminperm` permission on the source stream 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required on the Target Cluster\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminperm` permission on the source stream \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /STREAM/UPSTREAM/REMOVE
 ;;
 (defun get-stream-upstream-remove (path content)
@@ -1519,17 +1134,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 ;;
 ;; summary : Creates a topic in the specified stream.
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `topicperm` permission on the stream 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `topicperm` permission on the stream \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /STREAM/TOPIC/CREATE
 ;;
 (defun get-stream-topic-create (path content)
@@ -1541,31 +1146,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 ;;
 ;; summary : Deletes the specified topic from the specified stream.
-;; description : Consumers do not have to stop consuming from a topic before the topic is deleted.
-
-The deletion of the topic and the messages is immediate. However, the command also starts a background process for the purging the topic and messages to reclaim disk space. 
-
- 
-
-If the parameter `-autocreate` for the stream is set to `true`, a topic with the same name is created if a producer writes a message to a topic of the same name. For example, if you delete the topic `Topic_A` and then a producer writes a message to the topic `Topic_A`, MapR Streams creates a topic that is named `Topic_A`. Aside from the name, the new topic `Topic_A` shares nothing with the deleted topic `Topic_A`.
-
- 
-
- 
-
-
-
-## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `topicperm` permission on the stream 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : Consumers do not have to stop consuming from a topic before the topic is deleted.\n\nThe deletion of the topic and the messages is immediate. However, the command also starts a background process for the purging the topic and messages to reclaim disk space. \n\n \n\nIf the parameter `-autocreate` for the stream is set to `true`, a topic with the same name is created if a producer writes a message to a topic of the same name. For example, if you delete the topic `Topic_A` and then a producer writes a message to the topic `Topic_A`, MapR Streams creates a topic that is named `Topic_A`. Aside from the name, the new topic `Topic_A` shares nothing with the deleted topic `Topic_A`.\n\n \n\n \n\n\n\n## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `topicperm` permission on the stream \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /STREAM/TOPIC/DELETE
 ;;
 (defun get-stream-topic-delete (path content)
@@ -1577,17 +1158,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 ;;
 ;; summary : Allows you to increase the number of partitions that are in the specified topic.
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `topicperm` permission on the stream 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `topicperm` permission on the stream \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /STREAM/TOPIC/EDIT
 ;;
 (defun get-stream-topic-edit (path content)
@@ -1599,17 +1170,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 ;;
 ;; summary : Lists information about the partitions in the topics that are in a stream.
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /STREAM/TOPIC/INFO
 ;;
 (defun get-stream-topic-info (path content)
@@ -1621,17 +1182,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 ;;
 ;; summary : Lists the topics that are in a stream, as well as the number of partitions in each topic.
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /STREAM/TOPIC/LIST
 ;;
 (defun get-stream-topic-list (path content)
@@ -1643,16 +1194,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 ;;
 ;; summary : Creates a new MapR-DB binary or JSON table.
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/CREATE
 ;;
 (defun get-table-create (path content)
@@ -1664,17 +1206,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 ;;
 ;; summary : Lists the Access Control Expressions (ACEs) for a specified column.
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminaccessperm` on the table 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminaccessperm` on the table \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/CF/COLPERM/GET
 ;;
 (defun get-table-cf-colperm-get (path content)
@@ -1686,17 +1218,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 ;;
 ;; summary : Sets Access Control Expressions (ACEs) for a specified column.
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminaccessperm` on the table 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminaccessperm` on the table \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/CF/COLPERM/SET
 ;;
 (defun get-table-cf-colperm-set (path content)
@@ -1708,29 +1230,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 ;;
 ;; summary : Deletes the Access Control Expressions (ACEs) for a specified column. Deletion cannot be undone.
-;; description : Note: When a user, group, or role requests to read data from, write data to, or append data to a column, MapR-DB checks whether that user, group, or role has read or write permission for the column family AND read or write permission for the column. For example, suppose user `i_montoya` tries to write data to columns `col1` and `col2` in column family `cf1`. MapR-DB checks whether `i_montoya` has write permission on `cf1` AND `col1` AND `col2`. If `i_montoya` does not have all three permissions, MapR-DB returns an error that says access for the write is denied.
-
-If this user were to try to read from the same two columns, MapR-DB would simply not return the data. If the user tried to read from those two columns and additional columns on which he had read permissions, the results would contain the data for those additional columns but exclude the data for `col1` and `col2`.
-
- 
-
- 
-
- 
-
-
-
-## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminaccessperm` on the table 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : Note: When a user, group, or role requests to read data from, write data to, or append data to a column, MapR-DB checks whether that user, group, or role has read or write permission for the column family AND read or write permission for the column. For example, suppose user `i_montoya` tries to write data to columns `col1` and `col2` in column family `cf1`. MapR-DB checks whether `i_montoya` has write permission on `cf1` AND `col1` AND `col2`. If `i_montoya` does not have all three permissions, MapR-DB returns an error that says access for the write is denied.\n\nIf this user were to try to read from the same two columns, MapR-DB would simply not return the data. If the user tried to read from those two columns and additional columns on which he had read permissions, the results would contain the data for those additional columns but exclude the data for `col1` and `col2`.\n\n \n\n \n\n \n\n\n\n## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminaccessperm` on the table \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/CF/COLPERM/DELETE
 ;;
 (defun get-table-cf-colperm-delete (path content)
@@ -1742,17 +1242,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 ;;
 ;; summary : Creates a column family for a MapR binary or JSON table.
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `createrenamefamilyperm` on the table 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `createrenamefamilyperm` on the table \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/CF/CREATE
 ;;
 (defun get-table-cf-create (path content)
@@ -1764,17 +1254,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 ;;
 ;; summary : Deletes a column family from a MapR-DB binary table or JSON table . Deletion cannot be undone.
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `deletefamilyperm` on the table 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `deletefamilyperm` on the table \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/CF/DELETE
 ;;
 (defun get-table-cf-delete (path content)
@@ -1786,17 +1266,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 ;;
 ;; summary : Edits a column family in a binary table or JSON table .
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `createrenamefamilyperm` on the table 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `createrenamefamilyperm` on the table \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/CF/EDIT
 ;;
 (defun get-table-cf-edit (path content)
@@ -1808,17 +1278,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 ;;
 ;; summary : Lists a MapR table&#39;s column families.
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminaccessperm` on the table 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminaccessperm` on the table \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/CF/LIST
 ;;
 (defun get-table-cf-list (path content)
@@ -1830,17 +1290,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 ;;
 ;; summary : Deletes a MapR-DB binary or JSON table .
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminaccessperm` on the table 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminaccessperm` on the table \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/DELETE
 ;;
 (defun get-table-delete (path content)
@@ -1852,17 +1302,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 ;;
 ;; summary : Edits the attributes of a MapR-DB binary or JSON table .
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminaccessperm` on the table 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminaccessperm` on the table \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/EDIT
 ;;
 (defun get-table-edit (path content)
@@ -1874,17 +1314,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 ;;
 ;; summary : Displays information about a MapR-DB binary or JSON table .
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `adminaccessperm` on the table 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `adminaccessperm` on the table \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/INFO
 ;;
 (defun get-table-info (path content)
@@ -1896,16 +1326,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 ;;
 ;; summary : Lists the regions that make up a specified table.
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/REGION/LIST
 ;;
 (defun get-table-region-list (path content)
@@ -1917,29 +1338,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 ;;
 ;; summary : Merges regions of a table together to reduce the number of regions that a table occupies.
-;; description : This command merges the region that you specify with the region that contains the row keys that immediately follow the row keys of the specified region.
-
- 
-
-Note: Consider the table configuration when you decide to merge regions because it is possible that MapR-DB might immediately split the regions after they are merged. If `autosplit` is set to true, MapR-DB splits a region when the size of the region exceeds 150% of the average value (`regionsizemb`). For example, if the average value is 4096 MB, MapR-DB splits a region that is larger than 6144 MB. 
-
- 
-
- 
-
-
-
-## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `splitmergeperm` permission on the table 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : This command merges the region that you specify with the region that contains the row keys that immediately follow the row keys of the specified region.\n\n \n\nNote: Consider the table configuration when you decide to merge regions because it is possible that MapR-DB might immediately split the regions after they are merged. If `autosplit` is set to true, MapR-DB splits a region when the size of the region exceeds 150% of the average value (`regionsizemb`). For example, if the average value is 4096 MB, MapR-DB splits a region that is larger than 6144 MB. \n\n \n\n \n\n\n\n## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `splitmergeperm` permission on the table \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/REGION/MERGE
 ;;
 (defun get-table-region-merge (path content)
@@ -1951,25 +1350,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 ;;
 ;; summary : Manually triggers the packing of regions.
-;; description : MapR-DB automatically packs regions; however, you can use this command to reclaim space that is consumed by expired rows or to avoid read amplification.
-
- 
-
- 
-
-
-
-## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `packperm` permission on the table 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : MapR-DB automatically packs regions; however, you can use this command to reclaim space that is consumed by expired rows or to avoid read amplification.\n\n \n\n \n\n\n\n## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `packperm` permission on the table \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/REGION/PACK
 ;;
 (defun get-table-region-pack (path content)
@@ -1981,17 +1362,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 ;;
 ;; summary : Splits a region in a table.
-;; description : ## Permissions Required
-
- To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
-* `splitmergeperm` permission on the table 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\n To run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path \n* `splitmergeperm` permission on the table \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/REGION/SPLIT
 ;;
 (defun get-table-region-split (path content)
@@ -2003,25 +1374,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 ;;
 ;; summary : Registers a table as a replica of another MapR-DB binary or JSON table.
-;; description : Note: You do not need to use this command it you use the `table replica autosetup` command. 
-
- 
-
- 
-
-
-
-## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* `readAce` and `writeAce` on both the source volume and the target volume 
-* `lookupdir` on directories in the paths of both tables  
-* `readperm` and `replperm` permissions on the source table 
-
- 
-
-Note: The **mapr user** is not treated as a superuser. MapR-DB does not allow the **mapr user** to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : Note: You do not need to use this command it you use the `table replica autosetup` command. \n\n \n\n \n\n\n\n## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* `readAce` and `writeAce` on both the source volume and the target volume \n* `lookupdir` on directories in the paths of both tables  \n* `readperm` and `replperm` permissions on the source table \n\n \n\nNote: The **mapr user** is not treated as a superuser. MapR-DB does not allow the **mapr user** to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/REPLICA/ADD
 ;;
 (defun get-table-replica-add (path content)
@@ -2033,33 +1386,7 @@ Note: The **mapr user** is not treated as a superuser. MapR-DB does not allow th
 
 ;;
 ;; summary : Sets up and starts replication between a source MapR-DB binary or JSON table to a replica MapR-DB binary or JSON table.
-;; description : The `maprcli table replica autosetup` command performs the following steps to set up replication:
-
- 
- 
-1. Creates a table with the required column families in the destination cluster. 
-1. Declares the new table to be a replica of the source table and ensures that replication does not begin immediately after the next step. 
-1. Declares the source table as an upstream source for the replica. 
-1. Runs the `CopyTable` utility to load a copy of the source data into the replica. 
-1. Clears the paused replication state to start the replication stream. 
-
- 
-
- 
-
-
-
-## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables 
-* `readperm` and `replperm` permissions on the source table 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : The `maprcli table replica autosetup` command performs the following steps to set up replication:\n\n \n \n1. Creates a table with the required column families in the destination cluster. \n1. Declares the new table to be a replica of the source table and ensures that replication does not begin immediately after the next step. \n1. Declares the source table as an upstream source for the replica. \n1. Runs the `CopyTable` utility to load a copy of the source data into the replica. \n1. Clears the paused replication state to start the replication stream. \n\n \n\n \n\n\n\n## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables \n* `readperm` and `replperm` permissions on the source table \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/REPLICA/AUTOSETUP
 ;;
 (defun get-table-replica-autosetup (path content)
@@ -2071,17 +1398,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 ;;
 ;; summary : Edits the properties of a replica of a MapR-DB binary or JSON table.
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* `readAce` and `writeAce` on both the source volume and the target volume 
-* `lookupdir` on directories in the paths of both tables  
-* `readperm` and `replperm` permissions on the source table 
-
- 
-
-Note: The **mapr user** is not treated as a superuser. MapR-DB does not allow the **mapr user** to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* `readAce` and `writeAce` on both the source volume and the target volume \n* `lookupdir` on directories in the paths of both tables  \n* `readperm` and `replperm` permissions on the source table \n\n \n\nNote: The **mapr user** is not treated as a superuser. MapR-DB does not allow the **mapr user** to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/REPLICA/EDIT
 ;;
 (defun get-table-replica-edit (path content)
@@ -2093,16 +1410,7 @@ Note: The **mapr user** is not treated as a superuser. MapR-DB does not allow th
 
 ;;
 ;; summary : Lists replicas and the associated replica statistics for a specified MapR-DB binary or JSON table. By default, replica statistics are updated every five minutes.
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* `readAce` on the volume 
-* `lookupdir` on directories in the path  
-
- 
-
-Note: The **mapr user** is not treated as a superuser. MapR-DB does not allow the **mapr user** to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* `readAce` on the volume \n* `lookupdir` on directories in the path  \n\n \n\nNote: The **mapr user** is not treated as a superuser. MapR-DB does not allow the **mapr user** to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/REPLICA/LIST
 ;;
 (defun get-table-replica-list (path content)
@@ -2114,17 +1422,7 @@ Note: The **mapr user** is not treated as a superuser. MapR-DB does not allow th
 
 ;;
 ;; summary : Pauses the replication of data from a source MapR-DB binary or JSON table to a replica MapR-DB binary or JSON table.
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables 
-* `replperm` permissions on the source table 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables \n* `replperm` permissions on the source table \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/REPLICA/PAUSE
 ;;
 (defun get-table-replica-pause (path content)
@@ -2136,17 +1434,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 ;;
 ;; summary : Un-registers the specified MapR-DB binary or JSON table as a replica.
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables 
-* `replperm` permissions on the source table 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables \n* `replperm` permissions on the source table \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/REPLICA/REMOVE
 ;;
 (defun get-table-replica-remove (path content)
@@ -2158,17 +1446,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 ;;
 ;; summary : Resumes replication between a source MapR-DB binary or JSON table and a replica of that table when the replication state is set to paused by the maprcli table replica add or the maprcli table replica pause command.
-;; description : ## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables 
-* `replperm` permissions on the source table 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : ## Permissions Required\n\nTo run this command, your user ID must have the following permissions:\n \n* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume \n* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables \n* `replperm` permissions on the source table \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/REPLICA/RESUME
 ;;
 (defun get-table-replica-resume (path content)
@@ -2180,24 +1458,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 ;;
 ;; summary : Maps a MapR-DB source binary table to an Elasticsearch type.
-;; description : The type can already exist, as would be the case if custom mapping of MapR-DB data to Elasticsearch-supported data types is configured. If the type doesn&#39;t already exist, this command creates it and then loads data from the source table into the type.
-
- 
-
-The final action of this command is to start replication from the source table to the type.
-
- 
-
-The user that runs the command must have the following permissions granted through access control expressions on the source table:
-
- 
- 
-* Permission to perform column-family and column reads, which is granted with the `readperm` access control expression. 
-* Permission to perform replication, which is granted with the `replperm` access control expression. 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : The type can already exist, as would be the case if custom mapping of MapR-DB data to Elasticsearch-supported data types is configured. If the type doesn't already exist, this command creates it and then loads data from the source table into the type.\n\n \n\nThe final action of this command is to start replication from the source table to the type.\n\n \n\nThe user that runs the command must have the following permissions granted through access control expressions on the source table:\n\n \n \n* Permission to perform column-family and column reads, which is granted with the `readperm` access control expression. \n* Permission to perform replication, which is granted with the `replperm` access control expression. \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/REPLICA/ELASTICSEARCH/AUTOSETUP
 ;;
 (defun get-table-replica-elasticsearch-autosetup (path content)
@@ -2209,16 +1470,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 ;;
 ;; summary : Edits the mapping of a MapR-DB source binary table to an Elasticsearch type.
-;; description : The user that runs the command must have the following permissions granted through access control expressions on the source table:
-
- 
- 
-* Permission to perform column-family and column reads, which is granted with the `readperm` access control expression. 
-* Permission to perform replication, which is granted with the `replperm` access control expression. 
-
- 
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+;; description : The user that runs the command must have the following permissions granted through access control expressions on the source table:\n\n \n \n* Permission to perform column-family and column reads, which is granted with the `readperm` access control expression. \n* Permission to perform replication, which is granted with the `replperm` access control expression. \n\n \n\nNote: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 ;; * path : /TABLE/REPLICA/ELASTICSEARCH/EDIT
 ;;
 (defun get-table-replica-elasticsearch-edit (path content)
@@ -2242,16 +1494,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 ;;
 ;; summary : Pauses replication to an Elasticsearch type from a MapR-DB source binary table.
-;; description : Two reasons that you might want to pause replication are:
-
- 
- 
-* You want to run [ `maprcli table replica elasticsearch remove` ](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-remove.html) to remove the mapping from a source table to a type that is currently receiving replicated updates. 
-* You want to compare the data in the type to the data in the source table by using the [ `DiffTables` ](http://maprdocs.mapr.com/home/ReferenceGuide/DiffTables.html) utility. 
-
- 
-
-To resume replication to a type, run the  [`maprcli table replica elasticsearch resume`](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-resume.html)  command.
+;; description : Two reasons that you might want to pause replication are:\n\n \n \n* You want to run [ `maprcli table replica elasticsearch remove` ](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-remove.html) to remove the mapping from a source table to a type that is currently receiving replicated updates. \n* You want to compare the data in the type to the data in the source table by using the [ `DiffTables` ](http://maprdocs.mapr.com/home/ReferenceGuide/DiffTables.html) utility. \n\n \n\nTo resume replication to a type, run the  [`maprcli table replica elasticsearch resume`](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-resume.html)  command.
 ;; * path : /TABLE/REPLICA/ELASTICSEARCH/PAUSE
 ;;
 (defun get-table-replica-elasticsearch-pause (path content)
@@ -2347,7 +1590,7 @@ To resume replication to a type, run the  [`maprcli table replica elasticsearch 
 
 ;;
 ;; summary : Retrieves histograms and line charts for task metrics.
-;; description : A Hadoop job sets the rules that the JobTracker service uses to break an input data set into discrete tasks and assign those tasks to individual nodes. Use the `task table` to retrieve [task analytics](http://maprdocs.mapr.com/home/AdministratorGuide/JobMetrics-Analyzing.html#Analyzing-Job-Metrics-TheMapRMetricsservic-d3e72) about the jobs running on your cluster. The task metric data includes information about the tasks that make up a specific job, as well as the specific task attempts. The job metric data includes a task attempt&#39;s data throughput, measured in number of records per second as well as in bytes per second. The metrics data can be formatted for histogram display or line chart display. In order to issue the `task table` command, the mapr-metrics package must be installed on all the nodes where webserver and jobtracker are configured to run.
+;; description : A Hadoop job sets the rules that the JobTracker service uses to break an input data set into discrete tasks and assign those tasks to individual nodes. Use the `task table` to retrieve [task analytics](http://maprdocs.mapr.com/home/AdministratorGuide/JobMetrics-Analyzing.html#Analyzing-Job-Metrics-TheMapRMetricsservic-d3e72) about the jobs running on your cluster. The task metric data includes information about the tasks that make up a specific job, as well as the specific task attempts. The job metric data includes a task attempt's data throughput, measured in number of records per second as well as in bytes per second. The metrics data can be formatted for histogram display or line chart display. In order to issue the `task table` command, the mapr-metrics package must be installed on all the nodes where webserver and jobtracker are configured to run.
 ;; * path : /TASK/TABLE
 ;;
 (defun get-task-table (path content)
@@ -2431,11 +1674,7 @@ To resume replication to a type, run the  [`maprcli table replica elasticsearch 
 
 ;;
 ;; summary : Enables or disables auditing on the specified volume.
-;; description : You must have the `fc` permission on the cluster to use this command. See [`acl`](http://maprdocs.mapr.com/home/ReferenceGuide/acl.html#acl) for details about this permission.
-
- 
-
-To learn how to determine whether auditing is enabled for a volume, see [Checking Whether Auditing is Enabled for a Directory, File, or MapR-DB Table](http://maprdocs.mapr.com/home/SecurityGuide/CheckingWhetherAuditingisEnabled.html#CheckingWhetherAuditingisEnabledforaDirectoryFileorMapR-DBTable).
+;; description : You must have the `fc` permission on the cluster to use this command. See [`acl`](http://maprdocs.mapr.com/home/ReferenceGuide/acl.html#acl) for details about this permission.\n\n \n\nTo learn how to determine whether auditing is enabled for a volume, see [Checking Whether Auditing is Enabled for a Directory, File, or MapR-DB Table](http://maprdocs.mapr.com/home/SecurityGuide/CheckingWhetherAuditingisEnabled.html#CheckingWhetherAuditingisEnabledforaDirectoryFileorMapR-DBTable).
 ;; * path : /VOLUME/AUDIT
 ;;
 (defun get-volume-audit (path content)
@@ -2459,11 +1698,7 @@ To learn how to determine whether auditing is enabled for a volume, see [Checkin
 
 ;;
 ;; summary : Switches the master replica for a specified container to another replica in the replica chain.
-;; description : This command fails if there is only one up-to-date replica for the container.
-
- 
-
-Note: Only the root and the MAPR_USER (user name under which MapR services runs) user have permissions to run this command.
+;; description : This command fails if there is only one up-to-date replica for the container.\n\n \n\nNote: Only the root and the MAPR_USER (user name under which MapR services runs) user have permissions to run this command.
 ;; * path : /VOLUME/CONTAINER/SWITCHMASTER
 ;;
 (defun get-volume-container-switchmaster (path content)
@@ -2487,7 +1722,7 @@ Note: Only the root and the MAPR_USER (user name under which MapR services runs)
 
 ;;
 ;; summary : Corrects the mount path of a volume. Permissions required: fc or m on the volume.
-;; description : The CLDB maintains information about the mount path of every volume. If a directory in a volume&#39;s path is renamed (by a `hadoop fs` command, for example) the information in the CLDB will be out of date. The `volume fixmountpath` command does a reverse path walk from the volume and corrects the mount path information in the CLDB.
+;; description : The CLDB maintains information about the mount path of every volume. If a directory in a volume's path is renamed (by a `hadoop fs` command, for example) the information in the CLDB will be out of date. The `volume fixmountpath` command does a reverse path walk from the volume and corrects the mount path information in the CLDB.
 ;; * path : /VOLUME/FIXMOUNTPATH
 ;;
 (defun get-volume-fixmountpath (path content)
@@ -2547,20 +1782,7 @@ Note: Only the root and the MAPR_USER (user name under which MapR services runs)
 
 ;;
 ;; summary : Starts mirroring on the specified volume from its source volume.
-;; description : * License required: Enterprise Edition 
-* Permissions required: `fc` or `restore` on the volume 
-
- 
-
- When a mirror is started, the mirror volume is synchronized from a hidden internal snapshot so that the mirroring process is not affected by any concurrent changes to the source volume. The `volume mirror start` command does not wait for mirror completion, but returns immediately. The changes to the mirror volume occur atomically at the end of the mirroring process; deltas transmitted from the source volume do not appear until mirroring is complete.
-
- 
-
-To provide rollback capability for the mirror volume, the mirroring process creates a snapshot of the mirror volume before starting the mirror, with the following naming format: `&lt;volume&gt;.mirrorsnap.&lt;date&gt;.&lt;time&gt;`.
-
- 
-
-Normally, the mirroring operation transfers only deltas from the last successful mirror. Under certain conditions (mirroring a volume repaired by `fsck`, for example), the source and mirror volumes can become out of sync. In such cases, it is impossible to transfer deltas, because the state is not the same for both volumes. Use the `-full` option to force the mirroring operation to transfer all data to bring the volumes back in sync.
+;; description : * License required: Enterprise Edition \n* Permissions required: `fc` or `restore` on the volume \n\n \n\n When a mirror is started, the mirror volume is synchronized from a hidden internal snapshot so that the mirroring process is not affected by any concurrent changes to the source volume. The `volume mirror start` command does not wait for mirror completion, but returns immediately. The changes to the mirror volume occur atomically at the end of the mirroring process; deltas transmitted from the source volume do not appear until mirroring is complete.\n\n \n\nTo provide rollback capability for the mirror volume, the mirroring process creates a snapshot of the mirror volume before starting the mirror, with the following naming format: `<volume>.mirrorsnap.<date>.<time>`.\n\n \n\nNormally, the mirroring operation transfers only deltas from the last successful mirror. Under certain conditions (mirroring a volume repaired by `fsck`, for example), the source and mirror volumes can become out of sync. In such cases, it is impossible to transfer deltas, because the state is not the same for both volumes. Use the `-full` option to force the mirroring operation to transfer all data to bring the volumes back in sync.
 ;; * path : /VOLUME/MIRROR/START
 ;;
 (defun get-volume-mirror-start (path content)
@@ -2572,12 +1794,7 @@ Normally, the mirroring operation transfers only deltas from the last successful
 
 ;;
 ;; summary : Stops mirroring on the specified volume.
-;; description : * License required: Enterprise Edition 
-* Permissions required: `fc` or `restore` on the volume 
-
- 
-
- The `volume mirror stop` command lets you stop mirroring (for example, during a network outage). You can use the `volume mirror start` command to resume mirroring.
+;; description : * License required: Enterprise Edition \n* Permissions required: `fc` or `restore` on the volume \n\n \n\n The `volume mirror stop` command lets you stop mirroring (for example, during a network outage). You can use the `volume mirror start` command to resume mirroring.
 ;; * path : /VOLUME/MIRROR/STOP
 ;;
 (defun get-volume-mirror-stop (path content)
@@ -2661,8 +1878,7 @@ Normally, the mirroring operation transfers only deltas from the last successful
 
 ;;
 ;; summary : Creates a snapshot of the specified volume, using the specified snapshot name.
-;; description : * License required: Enterprise Edition 
-* Permissions required: `fc` or `m` on the volume
+;; description : * License required: Enterprise Edition \n* Permissions required: `fc` or `m` on the volume
 ;; * path : /VOLUME/SNAPSHOT/CREATE
 ;;
 (defun get-volume-snapshot-create (path content)
@@ -2686,12 +1902,7 @@ Normally, the mirroring operation transfers only deltas from the last successful
 
 ;;
 ;; summary : Preserves one or more snapshots from expiration.
-;; description : Specify the snapshots by volumes, paths, filter, or IDs.
-
- 
- 
-* License required: Enterprise Edition 
-* Permissions required: `fc `or `m` on the volume
+;; description : Specify the snapshots by volumes, paths, filter, or IDs.\n\n \n \n* License required: Enterprise Edition \n* Permissions required: `fc `or `m` on the volume
 ;; * path : /VOLUME/SNAPSHOT/PRESERVE
 ;;
 (defun get-volume-snapshot-preserve (path content)
@@ -2703,8 +1914,7 @@ Normally, the mirroring operation transfers only deltas from the last successful
 
 ;;
 ;; summary : Removes one or more snapshots.
-;; description : * License required: Enterprise Edition 
-* Permissions required: `fc` or `m` on the volume
+;; description : * License required: Enterprise Edition \n* Permissions required: `fc` or `m` on the volume
 ;; * path : /VOLUME/SNAPSHOT/REMOVE
 ;;
 (defun get-volume-snapshot-remove (path content)

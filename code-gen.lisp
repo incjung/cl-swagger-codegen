@@ -1,6 +1,7 @@
 (ql:quickload "cl-mustache")
 (ql:quickload "drakma")
 (ql:quickload "cl-json")
+(ql:quickload "cl-ppcre")
 
 (defun fetch-json (url)
   (multiple-value-bind (body response-code)
@@ -58,7 +59,7 @@
   "
 ;;
 ;; summary : {{summary}}
-;; description : {{description}}
+;; description : {{{description}}}
 ;; * path : {{paths}}
 ;;
 (defun {{first-name}}-{{path-name}} (path content)
@@ -113,7 +114,7 @@
                                                       (:first-name . ,(lambda () (string-downcase (format nil "~A" (first path)))))
                                                       (:method . ,(lambda() (format nil ":~A" (first path))))
                                                       (:summary . ,(lambda() (format nil "~A" (get-in '(:summary) (cdr path)))))
-                                                      (:description . ,(lambda() (format nil "~A" (get-in '(:description) (cdr path)))))
+                                                      (:description . ,(lambda() (format nil "~A" (cl-ppcre:regex-replace-all "\\n" (get-in '(:description) (cdr path)) "\\n"))))
                                                       (:accept . ,(lambda () (if accept accept "application/json")))
                                                       (:accept-type . ,(lambda () (if accept-type accept-type "application/json")))))))
   (format t "~%~%~%")
