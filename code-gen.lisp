@@ -12,12 +12,6 @@
 
 (defparameter *parameter-pattern* "{([A-Z\-]+)}")
 
-(defun path-parameters (path)
-  (let (result)
-    (cl-ppcre:do-register-groups (param) (*parameter-pattern* path)
-      (push param result))
-    (nreverse result)))
-
 (defun parse-path-parameters (path)
   "returns two values, first is non param path element, second are the params"
   (values-list (mapcar #'nreverse
