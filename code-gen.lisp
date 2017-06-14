@@ -121,3 +121,7 @@
 
 ;;; (generate-client "http://petstore.swagger.io/v2/swagger.json" "test1.lisp")
 ;;; (generate-client #p"~/development/swagger/mapr-swagger-ui/mapr.json" "test2.lisp")
+
+
+;;(print (run-program "ls" '("-l") :output *standard-output*))
+;;(with-output-to-string (st) (run-program "curl" '("-ks" "-u" "mapr:mapr" "https://172.16.28.138:8443/rest/alarm/list") :output st))
