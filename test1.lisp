@@ -9,10 +9,12 @@
 ;; description : 
 ;; * path : /PET
 ;;
-(defun post-pet (path content)
+(defun post-pet (urlpath &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request (format nil "~A~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
-        (values code stream header)))
+      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
+      (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
+                                  (cl-json:decode-json stream))
+          (format t "failed - code : ~a" code))))
 
 
 
@@ -21,10 +23,12 @@
 ;; description : 
 ;; * path : /PET
 ;;
-(defun put-pet (path content)
+(defun put-pet (urlpath &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request (format nil "~A~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :PUT)
-        (values code stream header)))
+      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :PUT)
+      (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
+                                  (cl-json:decode-json stream))
+          (format t "failed - code : ~a" code))))
 
 
 
@@ -33,10 +37,12 @@
 ;; description : Multiple status values can be provided with comma separated strings
 ;; * path : /PET/FIND-BY-STATUS
 ;;
-(defun get-pet-find-by-status (path content)
+(defun get-pet-find-by-status (urlpath &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request (format nil "~A~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
-        (values code stream header)))
+      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
+      (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
+                                  (cl-json:decode-json stream))
+          (format t "failed - code : ~a" code))))
 
 
 
@@ -45,10 +51,12 @@
 ;; description : Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
 ;; * path : /PET/FIND-BY-TAGS
 ;;
-(defun get-pet-find-by-tags (path content)
+(defun get-pet-find-by-tags (urlpath &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request (format nil "~A~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
-        (values code stream header)))
+      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
+      (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
+                                  (cl-json:decode-json stream))
+          (format t "failed - code : ~a" code))))
 
 
 
@@ -57,10 +65,12 @@
 ;; description : Returns a single pet
 ;; * path : /PET/{PET-ID}
 ;;
-(defun get-pet (path content)
+(defun get-pet (urlpath &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request (format nil "~A~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
-        (values code stream header)))
+      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
+      (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
+                                  (cl-json:decode-json stream))
+          (format t "failed - code : ~a" code))))
 
 
 
@@ -69,10 +79,12 @@
 ;; description : 
 ;; * path : /PET/{PET-ID}
 ;;
-(defun post-pet (path content)
+(defun post-pet (urlpath &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request (format nil "~A~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
-        (values code stream header)))
+      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
+      (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
+                                  (cl-json:decode-json stream))
+          (format t "failed - code : ~a" code))))
 
 
 
@@ -81,10 +93,12 @@
 ;; description : 
 ;; * path : /PET/{PET-ID}
 ;;
-(defun delete-pet (path content)
+(defun delete-pet (urlpath &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request (format nil "~A~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :DELETE)
-        (values code stream header)))
+      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :DELETE)
+      (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
+                                  (cl-json:decode-json stream))
+          (format t "failed - code : ~a" code))))
 
 
 
@@ -93,10 +107,12 @@
 ;; description : 
 ;; * path : /PET/{PET-ID}/UPLOAD-IMAGE
 ;;
-(defun post-pet-upload-image (path content)
+(defun post-pet-upload-image (urlpath &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request (format nil "~A~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
-        (values code stream header)))
+      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
+      (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
+                                  (cl-json:decode-json stream))
+          (format t "failed - code : ~a" code))))
 
 
 
@@ -105,10 +121,12 @@
 ;; description : Returns a map of status codes to quantities
 ;; * path : /STORE/INVENTORY
 ;;
-(defun get-store-inventory (path content)
+(defun get-store-inventory (urlpath &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request (format nil "~A~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
-        (values code stream header)))
+      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
+      (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
+                                  (cl-json:decode-json stream))
+          (format t "failed - code : ~a" code))))
 
 
 
@@ -117,22 +135,26 @@
 ;; description : 
 ;; * path : /STORE/ORDER
 ;;
-(defun post-store-order (path content)
+(defun post-store-order (urlpath &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request (format nil "~A~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
-        (values code stream header)))
+      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
+      (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
+                                  (cl-json:decode-json stream))
+          (format t "failed - code : ~a" code))))
 
 
 
 ;;
 ;; summary : Find purchase order by ID
-;; description : For valid response try integer IDs with value &gt;= 1 and &lt;= 10. Other values will generated exceptions
+;; description : For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions
 ;; * path : /STORE/ORDER/{ORDER-ID}
 ;;
-(defun get-store-order (path content)
+(defun get-store-order (urlpath &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request (format nil "~A~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
-        (values code stream header)))
+      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
+      (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
+                                  (cl-json:decode-json stream))
+          (format t "failed - code : ~a" code))))
 
 
 
@@ -141,10 +163,12 @@
 ;; description : For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors
 ;; * path : /STORE/ORDER/{ORDER-ID}
 ;;
-(defun delete-store-order (path content)
+(defun delete-store-order (urlpath &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request (format nil "~A~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :DELETE)
-        (values code stream header)))
+      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :DELETE)
+      (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
+                                  (cl-json:decode-json stream))
+          (format t "failed - code : ~a" code))))
 
 
 
@@ -153,10 +177,12 @@
 ;; description : This can only be done by the logged in user.
 ;; * path : /USER
 ;;
-(defun post-user (path content)
+(defun post-user (urlpath &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request (format nil "~A~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
-        (values code stream header)))
+      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
+      (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
+                                  (cl-json:decode-json stream))
+          (format t "failed - code : ~a" code))))
 
 
 
@@ -165,10 +191,12 @@
 ;; description : 
 ;; * path : /USER/CREATE-WITH-ARRAY
 ;;
-(defun post-user-create-with-array (path content)
+(defun post-user-create-with-array (urlpath &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request (format nil "~A~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
-        (values code stream header)))
+      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
+      (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
+                                  (cl-json:decode-json stream))
+          (format t "failed - code : ~a" code))))
 
 
 
@@ -177,10 +205,12 @@
 ;; description : 
 ;; * path : /USER/CREATE-WITH-LIST
 ;;
-(defun post-user-create-with-list (path content)
+(defun post-user-create-with-list (urlpath &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request (format nil "~A~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
-        (values code stream header)))
+      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
+      (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
+                                  (cl-json:decode-json stream))
+          (format t "failed - code : ~a" code))))
 
 
 
@@ -189,10 +219,12 @@
 ;; description : 
 ;; * path : /USER/LOGIN
 ;;
-(defun get-user-login (path content)
+(defun get-user-login (urlpath &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request (format nil "~A~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
-        (values code stream header)))
+      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
+      (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
+                                  (cl-json:decode-json stream))
+          (format t "failed - code : ~a" code))))
 
 
 
@@ -201,10 +233,12 @@
 ;; description : 
 ;; * path : /USER/LOGOUT
 ;;
-(defun get-user-logout (path content)
+(defun get-user-logout (urlpath &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request (format nil "~A~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
-        (values code stream header)))
+      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
+      (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
+                                  (cl-json:decode-json stream))
+          (format t "failed - code : ~a" code))))
 
 
 
@@ -213,10 +247,12 @@
 ;; description : 
 ;; * path : /USER/{USERNAME}
 ;;
-(defun get-user (path content)
+(defun get-user (urlpath &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request (format nil "~A~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
-        (values code stream header)))
+      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
+      (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
+                                  (cl-json:decode-json stream))
+          (format t "failed - code : ~a" code))))
 
 
 
@@ -225,10 +261,12 @@
 ;; description : This can only be done by the logged in user.
 ;; * path : /USER/{USERNAME}
 ;;
-(defun put-user (path content)
+(defun put-user (urlpath &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request (format nil "~A~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :PUT)
-        (values code stream header)))
+      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :PUT)
+      (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
+                                  (cl-json:decode-json stream))
+          (format t "failed - code : ~a" code))))
 
 
 
@@ -237,10 +275,12 @@
 ;; description : This can only be done by the logged in user.
 ;; * path : /USER/{USERNAME}
 ;;
-(defun delete-user (path content)
+(defun delete-user (urlpath &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request (format nil "~A~A" "http://petstore.swagger.io/v2" path) :accept "application/json" :content-type "application/json" :content content :want-stream t :method :DELETE)
-        (values code stream header)))
+      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :DELETE)
+      (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
+                                  (cl-json:decode-json stream))
+          (format t "failed - code : ~a" code))))
 
 
 
