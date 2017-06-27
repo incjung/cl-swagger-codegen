@@ -9,9 +9,9 @@
 ;; description : 
 ;; * path : /PET
 ;;
-(defun post-pet (urlpath &key content basic-authorization)
+(defun post-pet (host &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
+      (drakma:http-request (format nil "~a~a" host /PET) :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
       (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
                                   (cl-json:decode-json stream))
           (format t "failed - code : ~a" code))))
@@ -23,9 +23,9 @@
 ;; description : 
 ;; * path : /PET
 ;;
-(defun put-pet (urlpath &key content basic-authorization)
+(defun put-pet (host &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :PUT)
+      (drakma:http-request (format nil "~a~a" host /PET) :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :PUT)
       (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
                                   (cl-json:decode-json stream))
           (format t "failed - code : ~a" code))))
@@ -37,9 +37,9 @@
 ;; description : Multiple status values can be provided with comma separated strings
 ;; * path : /PET/FIND-BY-STATUS
 ;;
-(defun get-pet-find-by-status (urlpath &key content basic-authorization)
+(defun get-pet-find-by-status (host &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
+      (drakma:http-request (format nil "~a~a" host /PET/FIND-BY-STATUS) :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
       (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
                                   (cl-json:decode-json stream))
           (format t "failed - code : ~a" code))))
@@ -51,9 +51,9 @@
 ;; description : Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
 ;; * path : /PET/FIND-BY-TAGS
 ;;
-(defun get-pet-find-by-tags (urlpath &key content basic-authorization)
+(defun get-pet-find-by-tags (host &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
+      (drakma:http-request (format nil "~a~a" host /PET/FIND-BY-TAGS) :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
       (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
                                   (cl-json:decode-json stream))
           (format t "failed - code : ~a" code))))
@@ -65,9 +65,9 @@
 ;; description : Returns a single pet
 ;; * path : /PET/{PET-ID}
 ;;
-(defun get-pet (urlpath &key content basic-authorization)
+(defun get-pet (host &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
+      (drakma:http-request (format nil "~a~a" host /PET/{PET-ID}) :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
       (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
                                   (cl-json:decode-json stream))
           (format t "failed - code : ~a" code))))
@@ -79,9 +79,9 @@
 ;; description : 
 ;; * path : /PET/{PET-ID}
 ;;
-(defun post-pet (urlpath &key content basic-authorization)
+(defun post-pet (host &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
+      (drakma:http-request (format nil "~a~a" host /PET/{PET-ID}) :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
       (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
                                   (cl-json:decode-json stream))
           (format t "failed - code : ~a" code))))
@@ -93,9 +93,9 @@
 ;; description : 
 ;; * path : /PET/{PET-ID}
 ;;
-(defun delete-pet (urlpath &key content basic-authorization)
+(defun delete-pet (host &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :DELETE)
+      (drakma:http-request (format nil "~a~a" host /PET/{PET-ID}) :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :DELETE)
       (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
                                   (cl-json:decode-json stream))
           (format t "failed - code : ~a" code))))
@@ -107,9 +107,9 @@
 ;; description : 
 ;; * path : /PET/{PET-ID}/UPLOAD-IMAGE
 ;;
-(defun post-pet-upload-image (urlpath &key content basic-authorization)
+(defun post-pet-upload-image (host &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
+      (drakma:http-request (format nil "~a~a" host /PET/{PET-ID}/UPLOAD-IMAGE) :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
       (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
                                   (cl-json:decode-json stream))
           (format t "failed - code : ~a" code))))
@@ -121,9 +121,9 @@
 ;; description : Returns a map of status codes to quantities
 ;; * path : /STORE/INVENTORY
 ;;
-(defun get-store-inventory (urlpath &key content basic-authorization)
+(defun get-store-inventory (host &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
+      (drakma:http-request (format nil "~a~a" host /STORE/INVENTORY) :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
       (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
                                   (cl-json:decode-json stream))
           (format t "failed - code : ~a" code))))
@@ -135,9 +135,9 @@
 ;; description : 
 ;; * path : /STORE/ORDER
 ;;
-(defun post-store-order (urlpath &key content basic-authorization)
+(defun post-store-order (host &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
+      (drakma:http-request (format nil "~a~a" host /STORE/ORDER) :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
       (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
                                   (cl-json:decode-json stream))
           (format t "failed - code : ~a" code))))
@@ -149,9 +149,9 @@
 ;; description : For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions
 ;; * path : /STORE/ORDER/{ORDER-ID}
 ;;
-(defun get-store-order (urlpath &key content basic-authorization)
+(defun get-store-order (host &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
+      (drakma:http-request (format nil "~a~a" host /STORE/ORDER/{ORDER-ID}) :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
       (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
                                   (cl-json:decode-json stream))
           (format t "failed - code : ~a" code))))
@@ -163,9 +163,9 @@
 ;; description : For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors
 ;; * path : /STORE/ORDER/{ORDER-ID}
 ;;
-(defun delete-store-order (urlpath &key content basic-authorization)
+(defun delete-store-order (host &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :DELETE)
+      (drakma:http-request (format nil "~a~a" host /STORE/ORDER/{ORDER-ID}) :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :DELETE)
       (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
                                   (cl-json:decode-json stream))
           (format t "failed - code : ~a" code))))
@@ -177,9 +177,9 @@
 ;; description : This can only be done by the logged in user.
 ;; * path : /USER
 ;;
-(defun post-user (urlpath &key content basic-authorization)
+(defun post-user (host &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
+      (drakma:http-request (format nil "~a~a" host /USER) :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
       (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
                                   (cl-json:decode-json stream))
           (format t "failed - code : ~a" code))))
@@ -191,9 +191,9 @@
 ;; description : 
 ;; * path : /USER/CREATE-WITH-ARRAY
 ;;
-(defun post-user-create-with-array (urlpath &key content basic-authorization)
+(defun post-user-create-with-array (host &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
+      (drakma:http-request (format nil "~a~a" host /USER/CREATE-WITH-ARRAY) :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
       (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
                                   (cl-json:decode-json stream))
           (format t "failed - code : ~a" code))))
@@ -205,9 +205,9 @@
 ;; description : 
 ;; * path : /USER/CREATE-WITH-LIST
 ;;
-(defun post-user-create-with-list (urlpath &key content basic-authorization)
+(defun post-user-create-with-list (host &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
+      (drakma:http-request (format nil "~a~a" host /USER/CREATE-WITH-LIST) :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :POST)
       (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
                                   (cl-json:decode-json stream))
           (format t "failed - code : ~a" code))))
@@ -219,9 +219,9 @@
 ;; description : 
 ;; * path : /USER/LOGIN
 ;;
-(defun get-user-login (urlpath &key content basic-authorization)
+(defun get-user-login (host &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
+      (drakma:http-request (format nil "~a~a" host /USER/LOGIN) :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
       (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
                                   (cl-json:decode-json stream))
           (format t "failed - code : ~a" code))))
@@ -233,9 +233,9 @@
 ;; description : 
 ;; * path : /USER/LOGOUT
 ;;
-(defun get-user-logout (urlpath &key content basic-authorization)
+(defun get-user-logout (host &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
+      (drakma:http-request (format nil "~a~a" host /USER/LOGOUT) :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
       (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
                                   (cl-json:decode-json stream))
           (format t "failed - code : ~a" code))))
@@ -247,9 +247,9 @@
 ;; description : 
 ;; * path : /USER/{USERNAME}
 ;;
-(defun get-user (urlpath &key content basic-authorization)
+(defun get-user (host &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
+      (drakma:http-request (format nil "~a~a" host /USER/{USERNAME}) :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :GET)
       (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
                                   (cl-json:decode-json stream))
           (format t "failed - code : ~a" code))))
@@ -261,9 +261,9 @@
 ;; description : This can only be done by the logged in user.
 ;; * path : /USER/{USERNAME}
 ;;
-(defun put-user (urlpath &key content basic-authorization)
+(defun put-user (host &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :PUT)
+      (drakma:http-request (format nil "~a~a" host /USER/{USERNAME}) :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :PUT)
       (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
                                   (cl-json:decode-json stream))
           (format t "failed - code : ~a" code))))
@@ -275,9 +275,9 @@
 ;; description : This can only be done by the logged in user.
 ;; * path : /USER/{USERNAME}
 ;;
-(defun delete-user (urlpath &key content basic-authorization)
+(defun delete-user (host &key content basic-authorization)
     (multiple-value-bind (stream code header)
-      (drakma:http-request urlpath :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :DELETE)
+      (drakma:http-request (format nil "~a~a" host /USER/{USERNAME}) :basic-authorization basic-authorization :accept "application/json" :content-type "application/json" :content content :want-stream t :method :DELETE)
       (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
                                   (cl-json:decode-json stream))
           (format t "failed - code : ~a" code))))

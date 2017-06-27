@@ -105,6 +105,7 @@
 ;;
 ;; summary : Lists alarms in the system. Permissions required: login .
 ;; description : You can list all alarms, alarms by type (Cluster, Node or Volume), or alarms on a particular node or volume. To retrieve a count of all alarm types, pass `1` in the `summary` parameter. You can specify the alarms to return by filtering on type and entity. Use `start` and `limit` to retrieve only a specified window of data.
+
 ;; * path : /ALARM/LIST
 ;;
 (defun get-alarm-list (urlpath &key content basic-authorization)

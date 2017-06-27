@@ -1,7 +1,9 @@
-(ql:quickload "cl-mustache")
-(ql:quickload "drakma")
-(ql:quickload "cl-json")
-(ql:quickload "cl-ppcre")
+(in-package #:cl-swagger-codegen)
+
+;;(ql:quickload "cl-mustache")
+;;(ql:quickload "drakma")
+;;(ql:quickload "cl-json")
+;;(ql:quickload "cl-ppcre")
 
 (defun fetch-json (url)
   (multiple-value-bind (body response-code)
@@ -83,7 +85,7 @@
             do (loop for path in (rest paths)
                      do (format t "~%~%~%")
                         (wrapper-call-templete-simple `((:baseurl . ,(lambda () (make-urls json)))
-                                                        (:paths . ,(lambda () (car paths)))
+                                                        (:paths . ,(lambda () (string-downcase (car paths))))
                                                         (:path-name . ,(lambda () (string-downcase (normalize-path-name (first paths)))))
                                                         (:first-name . ,(lambda () (string-downcase (format nil "~A" (first path)))))
                                                         (:method . ,(lambda() (format nil ":~A" (first path))))
@@ -124,17 +126,3 @@
 
 ;;(print (run-program "ls" '("-l") :output *standard-output*))
 ;;(with-output-to-string (st) (run-program "curl" '("-ks" "-u" "mapr:mapr" "https://172.16.28.138:8443/rest/alarm/list") :output st))
-
-
-(usocket:with-client-socket (sock stream "172.16.28.138" 8443)
-  (let ((https (cl+ssl:make-ssl-client-stream
-                stream :unwrap-stream-p t
-                       :external-format '(:iso-8859-1 :eol-style :lf)
-                       :hostname "172.16.28.138")))
-    (unwind-protect
-         (progn
-           (format https "GET /rest/alram/list HTTP/1.1~%Host:172.16.28.138~%Accept: */*~2%")
-           (force-output https)
-           (loop for line = (read-line https nil)
-                 while line do (format t "HTTPS> ~a~%" line)))
-      (close https))))
