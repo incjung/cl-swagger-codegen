@@ -5,4 +5,5 @@
 
 
 (defpackage "CL-SWAGGER"
-  (:use "CL" "DRAKMA" "CL-JSON" "CL-PPCRE"))
+  (:use "CL" "DRAKMA" "CL-JSON" "CL-PPCRE")
+  (:export #:generate-client))
