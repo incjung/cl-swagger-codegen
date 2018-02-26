@@ -1,11 +1,14 @@
-(ql:quickload "cl-mustache")
-(ql:quickload "drakma")
-(ql:quickload "cl-json")
-(ql:quickload "cl-ppcre")
+;;(ql:quickload "cl-mustache")
+;;(ql:quickload "drakma")
+;;(ql:quickload "cl-json")
+;;(ql:quickload "cl-ppcre")
+
+(in-package "CL-SWAGGER")
 
 (defun fetch-json (url)
+  "fetch json with provide url when the response-code only is 200"
   (multiple-value-bind (body response-code)
-      (drakma:http-request url :want-stream t)
+      (http-request url :want-stream t)
     (setf (flex:flexi-stream-external-format body) :utf-8)
     (ecase response-code
       (200 (cl-json:decode-json body)))))
@@ -13,7 +16,7 @@
 (defparameter *parameter-pattern* "{([A-Z\-]+)}")
 
 (defun parse-path-parameters (path)
-  "returns two values, first is non param path element, second are the params"
+  "returns two values, 1st is non param path element, 2nd are the params"
   (values-list (mapcar #'nreverse
                        (reduce
                         (lambda (acc v)
@@ -28,6 +31,7 @@
                         :initial-value (list nil nil)))))
 
 (defun normalize-path-name (name)
+  "string normalizing with UpperString"
   (string-upcase (format nil "~{~A~^-~}" (parse-path-parameters name))))
 
 
@@ -38,12 +42,19 @@
               (cdr (assoc (car items) alist)))))
 
 (defun get-basepath (json)
+  "getter for base-path with json"
   (get-in '(:base-path) json))
 
 (defun get-schemes (json)
+  "getter for schemes with json"
   (first (get-in '(:schemes) json)))
 
+(defun get-host (json)
+  "getter for hostname with json"
+  (get-in '(:host) json))
+
 (defun make-urls (json)
+  "comination of full url path"
   (concatenate 'string (get-schemes json) "://" (get-host json) (get-basepath json)))
 
 (mustache:define wrapper-call-templete-simple
@@ -61,7 +72,6 @@
           (format t \"failed - code : ~a\" code))))")
 
 
-
 (mustache:define convert-json-templete
   "
 ;;
@@ -75,27 +85,28 @@
         (format t \"failed - code : ~a\" code))))")
 
 
-(defun generate-client (url filepath &optional accept accept-type)
-  (with-open-file (*standard-output* filepath :direction :output :if-exists :supersede)
-    (format t "(ql:quickload \"drakma\")~%(ql:quickload \"cl-json\")~%")
-    (let ((json (fetch-json url)))
-      (loop for paths in (get-in '(:paths) json)
-            do (loop for path in (rest paths)
-                     do (format t "~%~%~%")
-                        (wrapper-call-templete-simple `((:baseurl . ,(lambda () (make-urls json)))
-                                                        (:paths . ,(lambda () (car paths)))
-                                                        (:path-name . ,(lambda () (string-downcase (normalize-path-name (first paths)))))
-                                                        (:first-name . ,(lambda () (string-downcase (format nil "~A" (first path)))))
-                                                        (:method . ,(lambda() (format nil ":~A" (first path))))
-                                                        (:summary . ,(lambda() (format nil "~A" (get-in '(:summary) (cdr path)))))
-                                                        (:description . ,(lambda() (format nil "~A" (get-in '(:description) (cdr path)))))
-                                                        (:accept . ,(lambda () (if accept accept "application/json")))
-                                                        (:accept-type . ,(lambda () (if accept-type accept-type "application/json"))))))))
-    (format t "~%~%~%")
-    (convert-json-templete)))
+;; (defun generate-client (url filepath &optional accept accept-type)
+;;   (with-open-file (*standard-output* filepath :direction :output :if-exists :supersede)
+;;     (format t "(ql:quickload \"drakma\")~%(ql:quickload \"cl-json\")~%")
+;;     (let ((json (fetch-json url)))
+;;       (loop for paths in (get-in '(:paths) json)
+;;             do (loop for path in (rest paths)
+;;                      do (format t "~%~%~%")
+;;                         (wrapper-call-templete-simple `((:baseurl . ,(lambda () (make-urls json)))
+;;                                                         (:paths . ,(lambda () (car paths)))
+;;                                                         (:path-name . ,(lambda () (string-downcase (normalize-path-name (first paths)))))
+;;                                                         (:first-name . ,(lambda () (string-downcase (format nil "~A" (first path)))))
+;;                                                         (:method . ,(lambda() (format nil ":~A" (first path))))
+;;                                                         (:summary . ,(lambda() (format nil "~A" (get-in '(:summary) (cdr path)))))
+;;                                                         (:description . ,(lambda() (format nil "~A" (get-in '(:description) (cdr path)))))
+;;                                                         (:accept . ,(lambda () (if accept accept "application/json")))
+;;                                                         (:accept-type . ,(lambda () (if accept-type accept-type "application/json"))))))))
+;;     (format t "~%~%~%")
+;;     (convert-json-templete)))
 
 
 (defun generate-client-with-json (json filepath &optional accept accept-type)
+  "generater a lisp code with swagger-json"
   (with-open-file (*standard-output* filepath :direction :output :if-exists :supersede)
     (format t "(ql:quickload \"drakma\")~%(ql:quickload \"cl-json\")~%")
     (loop for paths in (get-in '(:paths) json)
@@ -115,6 +126,7 @@
 
 
 (defun generate-client (url filepath &optional accept accept-type)
+  "exposing function for client code generater"
   (if (typep url 'pathname) (generate-client-with-json (cl-json:decode-json-from-source url) filepath accept accept-type)
       (generate-client-with-json (fetch-json url) filepath accept accept-type)))
 
@@ -126,15 +138,15 @@
 ;;(with-output-to-string (st) (run-program "curl" '("-ks" "-u" "mapr:mapr" "https://172.16.28.138:8443/rest/alarm/list") :output st))
 
 
-(usocket:with-client-socket (sock stream "172.16.28.138" 8443)
-  (let ((https (cl+ssl:make-ssl-client-stream
-                stream :unwrap-stream-p t
-                       :external-format '(:iso-8859-1 :eol-style :lf)
-                       :hostname "172.16.28.138")))
-    (unwind-protect
-         (progn
-           (format https "GET /rest/alram/list HTTP/1.1~%Host:172.16.28.138~%Accept: */*~2%")
-           (force-output https)
-           (loop for line = (read-line https nil)
-                 while line do (format t "HTTPS> ~a~%" line)))
-      (close https))))
+;; (usocket:with-client-socket (sock stream "172.16.28.138" 8443)
+;;   (let ((https (cl+ssl:make-ssl-client-stream
+;;                 stream :unwrap-stream-p t
+;;                        :external-format '(:iso-8859-1 :eol-style :lf)
+;;                        :hostname "172.16.28.138")))
+;;     (unwind-protect
+;;          (progn
+;;            (format https "GET /rest/alram/list HTTP/1.1~%Host:172.16.28.138~%Accept: */*~2%")
+;;            (force-output https)
+;;            (loop for line = (read-line https nil)
+;;                  while line do (format t "HTTPS> ~a~%" line)))
+;;       (close https))))
