@@ -147,7 +147,8 @@ Please visit "https://developers.google.com/url-shortener/v1/getting_started" an
 4) Calling function from client stub
 with api key, we can make request-url 
 ```
-(post-url  "https://www.googleapis.com/urlshortener/v1/url?key=YOURKEYHERE" :content (cl-json:encode-json-to-string '(("longUrl" . "https://www.google.com/"))))
+(post-url  "https://www.googleapis.com/urlshortener/v1/url?key=YOURKEYHERE"
+           :content (cl-json:encode-json-to-string '(("longUrl" . "https://www.google.com/"))))
 
 (get-url  "https://www.googleapis.com/urlshortener/v1/url?key=YOURKEYHERE&shortUrl=http://goo.gl/fbsS")
 
