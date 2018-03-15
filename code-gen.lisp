@@ -71,6 +71,20 @@
                                   (cl-json:decode-json stream))
           (format t \"failed - code : ~a\" code))))")
 
+(mustache:define wrapper-call-templete-v2
+  "
+;;
+;; summary : {{summary}}
+;; description : {{{description}}}
+;; * path : {{paths}}
+;;
+(defun {{first-name}}-{{path-name}} (&key param content basic-authorization)
+  (multiple-value-bind (stream code header)
+      (drakma:http-request (concatenate 'string \"{{baseurl}}/{{path-name}}?\" param) :basic-authorization basic-authorization :accept \"{{accept}}\" :content-type \"{{accept-type}}\" :content content :want-stream t :method {{method}})
+    (if (equal code 200) (progn (setf (flexi-streams:flexi-stream-external-format stream) :utf-8)
+                                (cl-json:decode-json stream))
+        (format t \"failed - code : ~a\" code))))")
+
 
 (mustache:define convert-json-templete
   "
@@ -112,7 +126,7 @@
     (loop for paths in (get-in '(:paths) json)
           do (loop for path in (rest paths)
                    do (format t "~%~%~%")
-                      (wrapper-call-templete-simple `((:baseurl . ,(lambda () (make-urls json)))
+                      (wrapper-call-templete-v2 `((:baseurl . ,(lambda () (make-urls json)))
                                                       (:paths . ,(lambda () (car paths)))
                                                       (:path-name . ,(lambda () (string-downcase (normalize-path-name (first paths)))))
                                                       (:first-name . ,(lambda () (string-downcase (format nil "~A" (first path)))))
@@ -132,6 +146,7 @@
 
 ;;; (generate-client "http://petstore.swagger.io/v2/swagger.json" "test1.lisp")
 ;;; (generate-client #p"~/development/swagger/mapr-swagger-ui/mapr.json" "test2.lisp")
+;;; (generate-client #p"~/tmp/shorturl.json" #p"~/tmp/client3.lisp")
 
 
 ;;(print (run-program "ls" '("-l") :output *standard-output*))
@@ -141,7 +156,7 @@
 ;; (usocket:with-client-socket (sock stream "172.16.28.138" 8443)
 ;;   (let ((https (cl+ssl:make-ssl-client-stream
 ;;                 stream :unwrap-stream-p t
-;;                        :external-format '(:iso-8859-1 :eol-style :lf)
+(setf drakma:*header-stream* *standard-output*);;                        :external-format '(:iso-8859-1 :eol-style :lf)
 ;;                        :hostname "172.16.28.138")))
 ;;     (unwind-protect
 ;;          (progn
