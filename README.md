@@ -16,7 +16,7 @@ https://github.com/incjung/cl-swagger-codegen.git
 
 - Load/build in REPL session
 ```
-(swank:operate-on-system-for-emacs "cl-swagger" (quote load-op))
+ (asdf:load-system "cl-swagger")
 ```
 
 
