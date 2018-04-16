@@ -2,9 +2,12 @@
 ## Introduction
 This project is lisp swagger code-generator.
 
-A swagger codegen is to build APIs quicker and improve consumption of your Swagger-defined APIs in every popular language with Swagger Codegen. (http://swagger.io/swagger-codegen/)
+A swagger codegen is to build APIs quicker and improve consumption of your Swagger-defined APIs in every popular language with [Swagger CodeGen](http://swagger.io/swagger-codegen/)
 
 With cl-swagger-codegen, you can generates client stub code of common lisp. 
+ * For creating client stub code, [cl-mustache] (https://github.com/kanru/cl-mustache) which is template renderer is used. 
+ * For HTTP communication, [drakma] (https://github.com/edicl/drakma) which is HTTP client in common lisp is used.
+ * For JSON, [cl-json] (https://github.com/hankhero/cl-json) which is JSON encodrer/decoder is used.
 
 ## Install/Build
 `cl-swagger-codegen` can be installed by quicklisp. 
@@ -186,7 +189,8 @@ ex)
 (get-users-me-calendarlist :params `(("access_token" . ,access-token)))
 
 ```
-For more information and exaple, please read my [[https://github.com/incjung/cl-swagger-codegen/wiki/Google-Oauth2-Process][wiki link]]
+
+For more information and exaple, please read my [wiki link] (https://github.com/incjung/cl-swagger-codegen/wiki/Google-Oauth2-Process)
 
 #### JSON Structure
 For json object, cl-swagger-codegen uses `cl-json`. 
