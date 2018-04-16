@@ -5,9 +5,9 @@ This project is lisp swagger code-generator.
 A swagger codegen is to build APIs quicker and improve consumption of your Swagger-defined APIs in every popular language with [Swagger CodeGen](http://swagger.io/swagger-codegen/)
 
 With cl-swagger-codegen, you can generates client stub code of common lisp. 
- * For creating client stub code, [cl-mustache] (https://github.com/kanru/cl-mustache) which is template renderer is used. 
- * For HTTP communication, [drakma] (https://github.com/edicl/drakma) which is HTTP client in common lisp is used.
- * For JSON, [cl-json] (https://github.com/hankhero/cl-json) which is JSON encodrer/decoder is used.
+ * For creating client stub code, [cl-mustache](https://github.com/kanru/cl-mustache) which is template renderer is used. 
+ * For HTTP communication, [drakma](https://github.com/edicl/drakma) which is HTTP client in common lisp is used.
+ * For JSON, [cl-json](https://github.com/hankhero/cl-json) which is JSON encodrer/decoder is used.
 
 ## Install/Build
 `cl-swagger-codegen` can be installed by quicklisp. 
