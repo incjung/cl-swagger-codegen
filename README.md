@@ -1,8 +1,8 @@
 # cl-swagger-codegen #
 ## Introduction
-This project is lisp swagger code-generator.
+This project is lisp code generator supporting opened APIs.
 
-A swagger codegen is to build APIs quicker and improve consumption of your Swagger-defined APIs in every popular language with [Swagger CodeGen](http://swagger.io/swagger-codegen/)
+A [Swagger CodeGen](http://swagger.io/swagger-codegen/) is to build a client easier and consume a Swagger-defined APIs.
 
 With cl-swagger-codegen, you can generates client stub code of common lisp. 
  * For creating client stub code, [cl-mustache](https://github.com/kanru/cl-mustache) which is template renderer is used. 
@@ -23,7 +23,7 @@ https://github.com/incjung/cl-swagger-codegen.git
 ```
 
 
-## How to generate client Code with cl-swagger##
+## How to generate client Code with cl-swagger ##
 
 
 ### Generating client lisp code from swagger url ###
@@ -82,7 +82,7 @@ Assuming you have a swagger file, for example, `swagger.json`, you can generate 
 (generate-client #p"./directory-path/swagger.json" "client2.lisp")
 ```
 
-## How to use the client code that are created by cl-swagger##
+## How to use the client code that are created by cl-swagger ##
 
 ### Example 1: Petstore
 
