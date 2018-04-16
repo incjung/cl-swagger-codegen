@@ -145,9 +145,7 @@ To acquire and use your API key, visit "https://developers.google.com/url-shorte
 ### Example 3: Google Calendar Service
 Please visit the api explor (https://developers.google.com/apis-explorer/#p/calendar/v3/)
 
-For swagger file, you can find open-api swagger at `https://github.com/APIs-guru/openapi-directory/tree/master/APIs/googleapis.com` 
-
-For swagger file, you can find open-api swagger at `https://github.com/APIs-guru/openapi-directory/tree/master/APIs/googleapis.com`. Inthe case that the swagger is not a json format, I just used `https://www.browserling.com/tools/yaml-to-json` to save the `swagger.json`.
+For swagger file, you can find open-api swagger at `https://github.com/APIs-guru/openapi-directory/tree/master/APIs/googleapis.com`. In the case that the swagger is not a json format, I just used `https://www.browserling.com/tools/yaml-to-json` to save the `swagger.json`.
 
 #### Create Client Code
 ```
@@ -169,8 +167,26 @@ To get my scheduler calendars, use `get-users-me-calendarlist` function.
 When the rest api require basic authorization, you can use. `:basic-authorization`
 
 ```
- (<function-Name> :param <parmam> :content <content> :basic-authorization '("id" "password"))
+(<function-Name> :basic-authorization '("id" . "password"))
 ```
+
+#### OAUTH2 AUTHORIZATON
+For OAuth2, use *access-token* with *:params*
+
+```
+(<function-Name> :params '(("access-token" "-your-key-")))
+
+```
+
+ex)
+
+```
+(defparameter access-token "XXXXXXX YOUR-TOKEN-KEN XXXXXXXX")
+
+(get-users-me-calendarlist :params `(("access_token" . ,access-token)))
+
+```
+For more information and exaple, please read my [[https://github.com/incjung/cl-swagger-codegen/wiki/Google-Oauth2-Process][wiki link]]
 
 #### JSON Structure
 For json object, cl-swagger-codegen uses `cl-json`. 
