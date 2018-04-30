@@ -85,7 +85,9 @@ Assuming you have a swagger file, for example, `swagger.json`, you can generate 
 ## How to use the client code that are created by cl-swagger ##
 
 ### Example 1: Petstore
-
+ 
+- [BASIC-TUTORIAL](https://github.com/incjung/cl-swagger-codegen/wiki/Tutorial1_Basic)
+ 
 #### Create Client Code
 ```
 (generate-client "http://petstore.swagger.io/v2/swagger.json" #p"./example/pet-api-client.lisp")
@@ -190,7 +192,7 @@ ex)
 
 ```
 
-For more information and exaple, please read my [wiki link] (https://github.com/incjung/cl-swagger-codegen/wiki/Google-Oauth2-Process)
+For more information and exaple, please read my [wiki] (https://github.com/incjung/cl-swagger-codegen/wiki/Google-Oauth2-Process)
 
 #### JSON Structure
 For json object, cl-swagger-codegen uses `cl-json`. 
