@@ -65,7 +65,7 @@
   "scheme + hostname + basepath"
   (concatenate 'string (get-schemes json) "://" (get-host json) (get-basepath json)))
 
-(mustache:define wrapper-call-templete-v2
+(define wrapper-call-templete-v2
 "
 ;;
 ;; summary : {{summary}}
@@ -80,7 +80,7 @@
         (format t \"failed - code : ~a\" code))))")
 
 
-(mustache:define rest-call-function
+(define rest-call-function
   "
 (defun rest-call (host url-path
                   &key params content basic-authorization
@@ -96,7 +96,7 @@
         (format t \"HTTP CODE : ~A ~%\" code))))")
 
 
-(mustache:define rest-call-templete-v1
+(define rest-call-templete-v1
   "
 ;;
 ;; {{description}}
@@ -109,7 +109,7 @@
                             :accept \"{{accept}}\"
                             :content-type \"{{accept-type}}\"))")
 
-(mustache:define rest-call-templete-v2
+(define rest-call-templete-v2
   "
 ;;
 ;; {{description}}
@@ -123,7 +123,7 @@
                                               :content-type \"{{accept-type}}\"))")
 
 
-(mustache:define convert-json-templete
+(define convert-json-templete
   "
 ;;
 ;; (convert-json #'function \"/path\" content-json)
@@ -150,34 +150,6 @@
         (format t "HTTP CODE : ~A ~%" code))))
 
 
-(defmacro make-defs (host cmd-path method n)
-  "macro for creating http request functions"
-  (let ((function-name (intern (string-upcase (subseq (substitute #\- #\/ cmd-path) 1)))))
-    (if (= 1 n)
-        `(defun ,function-name (url-path
-                                &key params content basic-authorization
-                                  (method ,method)
-                                  (accept "application/json")
-                                  (content-type "application/json"))
-           (rest-call ,host url-path :params params :content content
-                                     :basic-authorization basic-authorization
-                                     :method method
-                                     :accept accept
-                                     :content-type content-type))
-        `(defun ,function-name (&key params content basic-authorization
-                                  (method ,method)
-                                  (accept "application/json")
-                                  (content-type "application/json"))
-           (rest-call ,host ,cmd-path :params params :content content
-                                     :basic-authorization basic-authorization
-                                     :method method
-                                     :accept accept
-                                     :content-type content-type)))))
-
-(macroexpand-1 '(make-defs "https://www.googleapis.com/calendar" "/v3/users/me/calendarList" :get  0))
-
-
-
 (defun generate-client-with-json (json filepath &optional accept accept-type)
   "generater a lisp code with swagger-json"
   (with-open-file (*standard-output* filepath :direction :output :if-exists :supersede)
@@ -202,29 +174,6 @@
                             (if options
                                 (rest-call-templete-v2 tmp)
                                 (rest-call-templete-v1 tmp)))))))
-    (convert-json-templete)))
-
-
-
-
-(defun generate-client-with-json-1 (json filepath &optional accept accept-type)
-  "generater a lisp code with swagger-json"
-  (with-open-file (*standard-output* filepath :direction :output :if-exists :supersede)
-    (format t "(ql:quickload \"drakma\")~%(ql:quickload \"cl-json\")~%")
-    (loop for paths in (get-in '(:paths) json)
-          do (loop for path in (rest paths)
-                   do (format t "~%~%~%")
-                      (wrapper-call-templete-v2 `((:baseurl . ,(lambda () (make-urls json)))
-                                                  (:paths . ,(lambda () (car paths)))
-                                                  (:path-name . ,(lambda () (string-downcase (normalize-path-name (first paths)))))
-                                                  (:path-url . ,(lambda () (string-downcase (normalize-path-url (first paths)))))
-                                                  (:first-name . ,(lambda () (string-downcase (format nil "~A" (first path)))))
-                                                  (:method . ,(lambda() (format nil ":~A" (first path))))
-                                                  (:summary . ,(lambda() (format nil "~A" (get-in '(:summary) (cdr path)))))
-                                                  (:description . ,(lambda() (format nil "~A" (cl-ppcre:regex-replace-all "\\n" (get-in '(:description) (cdr path)) "\\n"))))
-                                                  (:accept . ,(lambda () (if accept accept "application/json")))
-                                                  (:accept-type . ,(lambda () (if accept-type accept-type "application/json")))))))
-    (format t "~%~%~%")
     (convert-json-templete)))
 
 

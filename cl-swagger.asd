@@ -5,6 +5,6 @@
   :author "Inchul <ijung@mapr.com>"
   :license "BSD"
   :serial t
-  :depends-on ("drakma" "cl-json" "cl-ppcre")
+  :depends-on ("drakma" "cl-json" "cl-ppcre" "cl-mustache")
   :components ((:file "package")
                (:file "code-gen")))
